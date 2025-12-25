@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ian Jay Emong</title>
+    <meta name="description" content="Portfolio of Ian Jay Emong - IT Student and aspiring web developer based in Surigao City, Philippines.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Light Mode Colors */
+            --primary: #3B82F6;
+            --primary-light: #60A5FA;
+            --primary-dark: #2563EB;
+            --secondary: #10B981;
+            --secondary-light: #34D399;
+            --accent: #FFFFFF;
+            --background: #F0F9FF;
+            --surface: #FFFFFF;
+            --surface-glass: rgba(255, 255, 255, 0.7);
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #64748B;
+            --border: rgba(59, 130, 246, 0.15);
+            --border-strong: rgba(59, 130, 246, 0.3);
+            --shadow-color: rgba(59, 130, 246, 0.15);
+            --glass-blur: blur(20px);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-hero: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 50%, #ECFDF5 100%);
+        }
+
+        .dark {
+            /* Dark Mode Colors */
+            --primary: #60A5FA;
+            --primary-light: #93C5FD;
+            --primary-dark: #3B82F6;
+            --secondary: #34D399;
+            --secondary-light: #6EE7B7;
+            --accent: #FFFFFF;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --surface-glass: rgba(30, 41, 59, 0.8);
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --border: rgba(96, 165, 250, 0.2);
+            --border-strong: rgba(96, 165, 250, 0.4);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --gradient-hero: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+            overflow-x: hidden;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        /* Glassmorphism Base */
+        .glass {
+            background: var(--surface-glass);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 32px var(--shadow-color);
+        }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* Icons */
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .icon-lg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .icon-xl {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--surface-glass);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.7rem 5%;
+            box-shadow: 0 4px 30px var(--shadow-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: var(--accent);
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        .theme-toggle .moon-icon {
+            display: block;
+        }
+
+        .dark .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        .dark .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        /* Mobile menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            padding: 6rem 5% 5rem;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+            min-height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            right: -150px;
+            top: -150px;
+            border-radius: 50%;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            left: -100px;
+            bottom: -100px;
+            border-radius: 50%;
+            animation: pulse 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            background: linear-gradient(var(--surface), var(--surface)) padding-box,
+                        var(--gradient-primary) border-box;
+            box-shadow: 0 25px 60px var(--shadow-color),
+                        0 10px 30px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            display: block;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 35px 80px var(--shadow-color),
+                        0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .hero-content h2 {
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: slideInRight 0.8s ease forwards;
+            opacity: 0;
+            animation-delay: 0.2s;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-content h1 {
+            color: var(--text-primary);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+            animation: slideInRight 0.8s ease forwards;
+            opacity: 0;
+            animation-delay: 0.4s;
+        }
+
+        .hero-content h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content h3 {
+            color: var(--text-secondary);
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            animation: slideInRight 0.8s ease forwards;
+            opacity: 0;
+            animation-delay: 0.6s;
+        }
+
+        .hero-location {
+            color: var(--text-secondary);
+            font-style: normal;
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.6rem 1.2rem;
+            background: var(--surface-glass);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            animation: slideInRight 0.8s ease forwards;
+            opacity: 0;
+            animation-delay: 0.8s;
+        }
+
+        .hero-location svg {
+            color: var(--primary);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            animation: slideInRight 0.8s ease forwards;
+            opacity: 0;
+            animation-delay: 1s;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.85rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--accent);
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-color);
+        }
+
+        .btn-secondary {
+            background: var(--surface-glass);
+            backdrop-filter: var(--glass-blur);
+            color: var(--text-primary);
+            border: 1px solid var(--border-strong);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--accent);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 7rem 5%;
+            background: var(--surface);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50px;
+        }
+
+        .dark .section-label {
+            background: rgba(96, 165, 250, 0.15);
+        }
+
+        .section-title {
+            color: var(--text-primary);
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-top: 0.8rem;
+            max-width: 600px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.05rem;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--surface-glass);
+            backdrop-filter: var(--glass-blur);
+            padding: 3.5rem;
+            border-radius: 24px;
+            line-height: 1.9;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 8rem;
+            color: var(--primary);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 7rem 5%;
+            background: var(--text-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark .skills {
+            background: var(--surface);
+        }
+
+        .skills::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            left: -200px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+        }
+
+        .skills .section-label {
+            color: var(--primary-light);
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .skills .section-title {
+            color: var(--accent);
+        }
+
+        .dark .skills .section-title {
+            color: var(--text-primary);
+        }
+
+        .skills-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: var(--glass-blur);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark .skill-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--border);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .skill-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin: 0 auto 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s ease;
+            color: var(--accent);
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .skill-card:nth-child(1) .skill-icon {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1));
+        }
+
+        .skill-card:nth-child(2) .skill-icon {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1));
+        }
+
+        .skill-card:nth-child(3) .skill-icon {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(245, 158, 11, 0.1));
+        }
+
+        .skill-card h3 {
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .dark .skill-card h3 {
+            color: var(--text-primary);
+        }
+
+        .skill-list {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.2rem;
+        }
+
+        .dark .skill-list {
+            color: var(--text-secondary);
+        }
+
+        .skill-list p {
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .dark .skill-description {
+            color: var(--text-muted);
+        }
+
+        /* Education Section */
+        .education {
+            padding: 7rem 5%;
+            background: var(--background);
+            position: relative;
+        }
+
+        .education-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+        }
+
+        .education-item {
+            background: var(--surface-glass);
+            backdrop-filter: var(--glass-blur);
+            padding: 2rem 2.5rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            margin-left: 30px;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--surface);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 50px var(--shadow-color);
+        }
+
+        .education-item:hover::before {
+            background: var(--primary);
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .education-item h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .education-item .school {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .education-item .date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 7rem 5%;
+            background: var(--surface);
+            position: relative;
+        }
+
+        .projects-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--surface-glass);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px var(--shadow-color);
+            border-color: var(--primary);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .project-content {
+            padding: 1.8rem;
+        }
+
+        .project-content h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            padding: 0.4rem 0.8rem;
+            background: var(--surface);
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+        }
+
+        /* Certifications & Achievements */
+        .certifications {
+            padding: 7rem 5%;
+            background: var(--background);
+        }
+
+        .cert-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: var(--surface-glass);
+            backdrop-filter: var(--glass-blur);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px var(--shadow-color);
+            border-color: var(--primary);
+        }
+
+        .cert-card .cert-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.2rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.1));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .cert-card h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .cert-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .coming-soon {
+            opacity: 0.6;
+            font-style: italic;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 7rem 5%;
+            background: var(--surface);
+        }
+
+        .contact-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: var(--surface-glass);
+            backdrop-filter: var(--glass-blur);
+            padding: 2rem 1.5rem;
+            border-radius: 18px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 280px;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px var(--shadow-color);
+        }
+
+        .contact-card .contact-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: translateY(-4px);
+        }
+
+        .contact-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0 0 0.8rem 0;
+        }
+
+        .contact-cta {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 0.6rem;
+        }
+
+        /* Follow Me box */
+        .follow-me {
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            background: var(--surface-glass);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 18px;
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .follow-me .fm-left {
+            flex: 1 1 300px;
+        }
+
+        .follow-me .fm-right {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            flex: 1 1 400px;
+            justify-content: flex-end;
+        }
+
+        .follow-me .fm-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .follow-me .fm-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            gap: 0.5rem;
+            align-items: center;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--shadow-color);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4rem 5% 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark footer {
+            background: var(--surface);
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .footer-logo {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .dark footer p {
+            color: var(--text-secondary);
+        }
+
+        .dark .footer-subtitle {
+            color: var(--text-muted);
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 14px;
+            color: var(--accent);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.8rem 5%;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--surface);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.4s ease;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+                padding: 2rem;
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                padding: 4rem 5% 3rem;
+                min-height: auto;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about-content {
+                padding: 1.5rem;
+            }
+
+            .skills-grid,
+            .projects-grid,
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card {
+                min-height: auto;
+                padding: 1.5rem;
+            }
+
+            .follow-me {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.5rem;
+            }
+
+            .follow-me .fm-right {
+                justify-content: flex-start;
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .social-btn {
+                flex: 1 1 calc(50% - 0.4rem);
+                justify-content: center;
+                min-width: 130px;
+            }
+
+            .education-item {
+                margin-left: 0;
+                border-left: 4px solid var(--primary);
+            }
+
+            .education-item::before {
+                display: none;
+            }
+
+            .education-timeline::before {
+                display: none;
+            }
+
+            .hero-image {
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .social-btn {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo-container" onclick="scrollToTop()">
+                <div class="logo-icon">IJ</div>
+                <span class="logo-text">I.J. EMONG</span>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                    <li><a href="#about" onclick="closeMenu()">About</a></li>
+                    <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+                    <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+                    <li><a href="#education" onclick="closeMenu()">Education</a></li>
+                    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <svg class="icon moon-icon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="icon sun-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-image-wrapper">
+                <img src="ije.jpg" class="hero-image">
+            </div>
+            <div class="hero-content">
+                <h2>Hello, I'm</h2>
+                <h1>IAN JAY <span>EMONG</span></h1>
+                <h3>IT Student & Aspiring Web Developer</h3>
+                <p class="hero-location">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Based in Surigao City, Philippines
+                </p>
+                <div class="cta-buttons">
+                    <a href="#about" class="btn btn-primary">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        Learn More About Me
+                    </a>
+                    <a href="myResume.pdf" class="btn btn-secondary">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Download Resume
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-header reveal">
+            <p class="section-label">ABOUT ME</p>
+            <h2 class="section-title">Passionate About Growth & Learning</h2>
+        </div>
+        <div class="about-content reveal reveal-delay-2">
+            <p>
+                I'm a graduating IT student from Northeastern Mindanao Colleges.
+                My passion lies in web development, where I'm actively building skills in HTML, CSS, and JavaScript.
+            </p>
+            <p>
+                I believe in continuous learning and stepping outside my comfort zone to grow. I'm eager to take on challenges, embrace new opportunities, and apply what I learn in real-world settings. 
+                My goal is to contribute meaningfully while developing expertise in web development and IT.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="section-header reveal">
+            <p class="section-label">MY SKILLS</p>
+            <h2 class="section-title">What I'm Learning & Mastering</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card reveal reveal-delay-1">
+                <div class="skill-icon">
+                    <svg class="icon-xl" viewBox="0 0 24 24">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                </div>
+                <h3>Web Development</h3>
+                <div class="skill-list">
+                    <p>HTML • CSS • JavaScript</p>
+                </div>
+                <p class="skill-description">Building responsive and modern websites with clean, semantic code</p>
+            </div>
+            <div class="skill-card reveal reveal-delay-2">
+                <div class="skill-icon">
+                    <svg class="icon-xl" viewBox="0 0 24 24">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                    </svg>
+                </div>
+                <h3>Technical Skills</h3>
+                <div class="skill-list">
+                    <p>Hardware Troubleshooting</p>
+                    <p>Network Configuration</p>
+                    <p>Operating System Installation</p>
+                </div>
+                <p class="skill-description">Hands-on experience with computer systems and network setup</p>
+            </div>
+            <div class="skill-card reveal reveal-delay-3">
+                <div class="skill-icon">
+                    <svg class="icon-xl" viewBox="0 0 24 24">
+                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                    </svg>
+                </div>
+                <h3>Always Learning</h3>
+                <div class="skill-list">
+                    <p>Eager to master new technologies</p>
+                    <p>Open to feedback & growth</p>
+                </div>
+                <p class="skill-description">Continuous improvement mindset with willingness to take on challenges</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="section-header reveal">
+            <p class="section-label">MY WORK</p>
+            <h2 class="section-title">Projects & Portfolio</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card reveal reveal-delay-1">
+                <div class="project-image">
+                    <svg class="icon" style="width: 64px; height: 64px;" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </div>
+                <div class="project-content">
+                    <h3>Personal Portfolio Website</h3>
+                    <p>A responsive portfolio website showcasing my skills, education, and projects built with HTML, CSS, and JavaScript.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card reveal reveal-delay-2">
+                <div class="project-image">
+                    <svg class="icon" style="width: 64px; height: 64px;" viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <div class="project-content">
+                    <h3>Coming Soon</h3>
+                    <p>More exciting projects are in development. Stay tuned for updates!</p>
+                    <div class="project-tags">
+                        <span class="project-tag">In Progress</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Achievements Section -->
+    <section id="certifications" class="certifications">
+        <div class="section-header reveal">
+            <p class="section-label">ACHIEVEMENTS</p>
+            <h2 class="section-title">Certifications & Awards</h2>
+        </div>
+        <div class="cert-grid">
+            <div class="cert-card reveal reveal-delay-1">
+                <div class="cert-icon">
+                    <svg class="icon-xl" viewBox="0 0 24 24">
+                        <circle cx="12" cy="8" r="7"></circle>
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                    </svg>
+                </div>
+                <h3>Certifications</h3>
+                <p class="coming-soon">Coming soon...</p>
+            </div>
+            <div class="cert-card reveal reveal-delay-2">
+                <div class="cert-icon">
+                    <svg class="icon-xl" viewBox="0 0 24 24">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <h3>Achievements</h3>
+                <p class="coming-soon">Coming soon...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="section-header reveal">
+            <p class="section-label">EDUCATION</p>
+            <h2 class="section-title">My Academic Journey</h2>
+        </div>
+        <div class="education-timeline">
+            <div class="education-item reveal reveal-delay-1">
+                <h3>Bachelor of Science in Information Technology</h3>
+                <p class="school">Northeastern Mindanao Colleges</p>
+                <p class="date">
+                    <svg class="icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    September 2022 – Expected June 2026
+                </p>
+            </div>
+            <div class="education-item reveal reveal-delay-2">
+                <h3>Senior High - (TVL- ICT) Strand</h3>
+                <p class="school">STI College Surigao</p>
+                <p class="date">
+                    <svg class="icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    September 2020 – June 2022
+                </p>
+            </div>
+            <div class="education-item reveal reveal-delay-3">
+                <h3>Secondary Education</h3>
+                <p class="school">Surigao City National High School</p>
+                <p class="date">
+                    <svg class="icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    June 2016 – March 2020
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-header reveal">
+            <p class="section-label">CONTACT</p>
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Ready to start your project or have questions? I'd love to hear from you.</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-card reveal reveal-delay-1">
+                <div class="contact-icon">
+                    <svg class="icon-lg" viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </div>
+                <h3>Email</h3>
+                <p>Send me an email for detailed inquiries</p>
+                <div class="contact-cta"><a class="btn btn-sm btn-secondary" href="mailto:emongianjay.ije@gmail.com">Email Me</a></div>
+            </div>
+            <div class="contact-card reveal reveal-delay-2">
+                <div class="contact-icon">
+                    <svg class="icon-lg" viewBox="0 0 24 24">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                </div>
+                <h3>Phone</h3>
+                <p>Available for calls and consultations</p>
+                <div class="contact-cta"><a class="btn btn-sm btn-secondary" href="tel:+639304202796">Call / SMS</a></div>
+            </div>
+            <div class="contact-card reveal reveal-delay-3">
+                <div class="contact-icon">
+                    <svg class="icon-lg" viewBox="0 0 24 24">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                </div>
+                <h3>Messenger</h3>
+                <p>Fast replies via Facebook Messenger</p>
+                <div class="contact-cta"><a class="btn btn-sm btn-primary" href="https://m.me/yanyanemong.ije/" target="_blank">Open Messenger</a></div>
+            </div>
+            <div class="contact-card reveal reveal-delay-4">
+                <div class="contact-icon">
+                    <svg class="icon-lg" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </div>
+                <h3>Location</h3>
+                <p>Surigao City, Philippines</p>
+                <div class="contact-cta"><a class="btn btn-sm btn-secondary" href="https://www.google.com/maps" target="_blank">View Map</a></div>
+            </div>
+        </div>
+
+        <div class="follow-me reveal">
+            <div class="fm-left">
+                <div class="fm-title">Follow Me</div>
+                <div class="fm-sub">Stay updated with my latest projects and updates.</div>
+            </div>
+            <div class="fm-right">
+                <a href="https://www.facebook.com/share/17sWz2bXps/" target="_blank" class="social-btn">
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                    Facebook
+                </a>
+                <a href="https://instagram.com/" target="_blank" class="social-btn">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    Instagram
+                </a>
+                <a href="https://www.linkedin.com/in/ian-jay-emong-984a562b9" target="_blank" class="social-btn">
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">IJ</div>
+        <p>&copy; 2025 Ian Jay Emong. All rights reserved.</p>
+        <p class="footer-subtitle">Built with passion and dedication to growth</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Scroll to top">
+        <svg class="icon" viewBox="0 0 24 24">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const scrollTop = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+
+            revealElements();
+            updateActiveNavLink();
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.getElementById('navLinks');
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : 'auto';
+        }
+
+        function closeMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.getElementById('navLinks');
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.getElementById('navLinks');
+            const isClickInsideMenu = navLinks.contains(event.target);
+            const isClickOnHamburger = hamburger.contains(event.target);
+
+            if (!isClickInsideMenu && !isClickOnHamburger && navLinks.classList.contains('open')) {
+                closeMenu();
+            }
+        });
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Reveal on scroll
+        function revealElements() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Update active nav link
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Initial reveal check
+        window.addEventListener('load', () => {
+            revealElements();
+            updateActiveNavLink();
+        });
+    </script>
+</body>
+</html>
