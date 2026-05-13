@@ -3,432 +3,637 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ian Jay Emong — Creative Designer & IT Professional</title>
+<title>Ian Jay Emong — Graphic Designer & IT Professional</title>
 <meta name="description" content="Portfolio of Ian Jay Emong — graphic designer, business owner, and BSIT graduate based in Surigao City, Philippines." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-  /* Light theme with skyblue glassmorphism */
-  --radius: 1.25rem;
-  --background: #f5f9ff;
-  --foreground: #0a1f3e;
-  --card: #ffffff;
-  --card-foreground: #0a1f3e;
-  --popover: #ffffff;
-  --popover-foreground: #0a1f3e;
-  --primary: #5cc8ff;
-  --primary-foreground: #0a1f3e;
-  --primary-glow: #3ba8ff;
-  --secondary: #e8f2ff;
-  --secondary-foreground: #0a1f3e;
-  --muted: #6b7a9e;
-  --muted-foreground: #6b7a9e;
-  --accent: #5cc8ff;
-  --accent-foreground: #0a1f3e;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.08);
-  --input: rgba(255, 255, 255, 0.7);
-  --ring: #5cc8ff;
-
-@import "tailwindcss" source(none);
-@source "../src";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
-
-/* Custom font import */
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
-
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
-
+/* ============================================================
+   Design System — Product UI Styleguide
+   Tokens · Spacing · Radius · Elevation · Typography · Colors
+   ============================================================ */
 :root {
-  --radius: 0.625rem;
-  --radius: 1.25rem;
-  /* Sky Blue primary palette */
-  --background: #F6FFEA;
-  --foreground: #1C4F5C;
-  --card: #ffffff;
-  --card-foreground: #1C4F5C;
-  --popover: #ffffff;
-  --popover-foreground: #1C4F5C;
-  --primary: #62C4DA;
-  --primary-foreground: #ffffff;
-  --primary-glow: #4A9FB3;
+  /* Color tokens — Light */
+  --background: #F4FBF1;
+  --surface: #FFFFFF;
+  --surface-2: #F7FCFA;
+  --foreground: #0F2E36;
+  --muted-foreground: #5C7B85;
+  --border: rgba(28, 79, 92, 0.10);
+  --border-strong: rgba(28, 79, 92, 0.18);
+
+  --primary: #1F8FAA;
+  --primary-hover: #1A7A92;
+  --primary-pressed: #155F73;
+  --primary-foreground: #FFFFFF;
+  --primary-glow: #62C4DA;
+  --primary-soft: rgba(31, 143, 170, 0.10);
+  --primary-soft-hover: rgba(31, 143, 170, 0.18);
+
   --secondary: #FFDE96;
-  --secondary-foreground: #1C4F5C;
-  --muted: #7AABBA;
-  --muted-foreground: #7AABBA;
+  --secondary-foreground: #4A2E00;
   --accent: #FA855A;
-  --accent-foreground: #ffffff;
-  --destructive: #C93638;
-  --destructive-foreground: #ffffff;
-  --border: rgba(98, 196, 218, 0.25);
-  --input: rgba(255, 255, 255, 0.8);
-  --ring: #62C4DA;
+  --accent-foreground: #FFFFFF;
+  --success: #2BB673;
+  --warning: #E0A82E;
+  --destructive: #D04040;
 
-  --gradient-hero: linear-gradient(135deg, #F6FFEA 0%, #E8F9FF 50%, #ffffff 100%);
-  --gradient-primary: linear-gradient(135deg, #62C4DA 0%, #4A9FB3 100%);
-  --gradient-glow: radial-gradient(circle at 30% 30%, rgba(98, 196, 218, 0.25), transparent 60%);
-  --shadow-glow: 0 20px 60px -15px rgba(98, 196, 218, 0.35);
-  --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
-  --glass-bg: rgba(246, 255, 234, 0.65);
-  --glass-border: rgba(98, 196, 218, 0.2);
-  --font-display: "Space Grotesk", "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
-  --color-primary-glow: var(--primary-glow);
-  --chart-1: #FA855A;
-  --chart-2: #62C4DA;
-  --chart-3: #C93638;
-  --chart-4: #FFDE96;
-  --chart-5: #F6FFEA;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #1C4F5C;
-  --sidebar-primary: #62C4DA;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #FFDE96;
-  --sidebar-accent-foreground: #1C4F5C;
-  --sidebar-border: rgba(98, 196, 218, 0.2);
-  --sidebar-ring: #62C4DA;
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-highlight: rgba(255, 255, 255, 0.85);
+  --glass-tint: rgba(98, 196, 218, 0.08);
+
+  /* Elevation */
+  --elev-0: 0 0 0 1px rgba(15, 46, 54, 0.04);
+  --elev-1: 0 1px 2px rgba(15, 46, 54, 0.06), 0 1px 3px rgba(15, 46, 54, 0.04);
+  --elev-2: 0 4px 12px rgba(15, 46, 54, 0.08), 0 2px 4px rgba(15, 46, 54, 0.04);
+  --elev-3: 0 18px 40px -12px rgba(15, 46, 54, 0.18), 0 8px 16px -8px rgba(15, 46, 54, 0.10);
+  --elev-glow: 0 20px 60px -15px rgba(31, 143, 170, 0.45);
+
+  /* Radius */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* Spacing scale */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
+  --s-12: 48px; --s-16: 64px; --s-20: 80px;
+
+  /* Type */
+  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
-@layer base {
-  * {
-    border-color: var(--color-border);
-  }
+/* Dark mode */
+html.dark {
+  --background: #0B1117;
+  --surface: #131B23;
+  --surface-2: #182129;
+  --foreground: #E6EDF3;
+  --muted-foreground: #8FA3AF;
+  --border: rgba(230, 237, 243, 0.08);
+  --border-strong: rgba(230, 237, 243, 0.16);
 
-  body {
-    background: var(--gradient-hero);
-    color: var(--color-foreground);
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
+  --primary: #39C5E0;
+  --primary-hover: #5AD2E8;
+  --primary-pressed: #79DEEF;
+  --primary-foreground: #0B1117;
+  --primary-glow: #00A8CC;
+  --primary-soft: rgba(57, 197, 224, 0.12);
+  --primary-soft-hover: rgba(57, 197, 224, 0.20);
 
-  h1, h2, h3, h4 {
-    font-family: var(--font-display);
-    letter-spacing: -0.02em;
-  }
+  --secondary: #2A2218;
+  --secondary-foreground: #FFDE96;
+  --accent: #FF7B39;
+
+  --glass-bg: rgba(19, 27, 35, 0.55);
+  --glass-bg-strong: rgba(19, 27, 35, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.10);
+  --glass-tint: rgba(57, 197, 224, 0.08);
+
+  --elev-0: 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --elev-1: 0 1px 2px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.3);
+  --elev-2: 0 4px 12px rgba(0,0,0,0.45), 0 2px 4px rgba(0,0,0,0.25);
+  --elev-3: 0 18px 40px -12px rgba(0,0,0,0.6), 0 8px 16px -8px rgba(0,0,0,0.4);
+  --elev-glow: 0 20px 60px -15px rgba(57, 197, 224, 0.45);
 }
 
-@layer utilities {
-  .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(40px) saturate(200%);
-    -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-soft);
-  }
-  .glass-dark {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    color: #0a1f3e;
-  }
-  .text-gradient {
-    background: linear-gradient(135deg, #5cc8ff, #3ba8ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .blob {
-    position: absolute;
-    border-radius: 9999px;
-    filter: blur(80px);
-    opacity: 0.6;
-    pointer-events: none;
-    animation: blob-float 14s ease-in-out infinite;
-  }
-  .magnetic-btn {
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
-  }
-  .magnetic-btn:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: var(--shadow-glow);
-  }
-}
-
-@keyframes blob-float {
-  0%, 100% { transform: translate(0,0) scale(1); }
-  33% { transform: translate(40px,-30px) scale(1.1); }
-  66% { transform: translate(-30px,40px) scale(0.95); }
-}
-
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-.animate-float { animation: float 6s ease-in-out infinite; }
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-/* Hide scrollbar look but keep scroll */
+/* ============ Reset ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-
-@theme inline {
-  --color-primary-glow: var(--primary-glow);
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
 }
-
-/* placeholder */
-.__noop { display: none; }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: #F6FFEA; color: #1C4F5C; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-img { max-width: 100%; display: block; }
-h1, h2, h3, h4 { font-family: 'Space Grotesk','Inter',sans-serif; letter-spacing: -0.02em; line-height: 1.05; color: #1C4F5C; }
-em { font-style: italic; background: linear-gradient(135deg, #62C4DA, #4A9FB3); -webkit-background-clip: text; background-clip: text; color: transparent; }
+img, svg { max-width: 100%; display: block; }
+ul { list-style: none; }
 
-/* Background */
-.bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: linear-gradient(135deg, #F6FFEA 0%, #E8F9FF 55%, #ffffff 100%); }
-.blob { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.3; mix-blend-mode: multiply; }
-.b1 { width: 520px; height: 520px; background: rgba(98, 196, 218, 0.45); top: -120px; left: -120px; animation: float1 18s ease-in-out infinite; }
-.b2 { width: 600px; height: 600px; background: rgba(255, 222, 150, 0.35); bottom: -200px; right: -160px; animation: float2 22s ease-in-out infinite; }
-.b3 { width: 420px; height: 420px; background: rgba(98, 196, 218, 0.2); top: 40%; left: 40%; animation: float3 25s ease-in-out infinite; }
+/* ============ Typography ============ */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--foreground);
+}
+.h1 { font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; }
+.h2 { font-size: clamp(1.9rem, 3.5vw, 2.75rem); }
+.h3 { font-size: 1.35rem; }
+.subtitle { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); }
+.body { font-size: 1rem; color: var(--muted-foreground); }
+.body-sm { font-size: 0.875rem; color: var(--muted-foreground); }
+.caption { font-size: 0.75rem; color: var(--muted-foreground); }
+em { font-style: normal; background: linear-gradient(135deg, var(--primary), var(--primary-glow)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+strong { color: var(--foreground); font-weight: 700; }
+
+/* ============ Animated Background ============ */
+.bg { position: fixed; inset: 0; z-index: -2; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.55; pointer-events: none; }
+.b1 { width: 520px; height: 520px; background: rgba(98, 196, 218, 0.55); top: -160px; left: -120px; animation: float1 18s ease-in-out infinite; }
+.b2 { width: 600px; height: 600px; background: rgba(255, 222, 150, 0.45); bottom: -220px; right: -160px; animation: float2 22s ease-in-out infinite; }
+.b3 { width: 420px; height: 420px; background: rgba(250, 133, 90, 0.25); top: 45%; left: 40%; animation: float3 26s ease-in-out infinite; }
+.dark .b1 { background: rgba(57, 197, 224, 0.30); opacity: 0.5; }
+.dark .b2 { background: rgba(255, 123, 57, 0.20); opacity: 0.45; }
+.dark .b3 { background: rgba(57, 197, 224, 0.16); opacity: 0.4; }
 @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(80px,60px)} }
 @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-100px,-80px)} }
 @keyframes float3 { 0%,100%{transform:translate(-50%,-50%)} 50%{transform:translate(-30%,-70%)} }
-.grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(98,196,218,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(98,196,218,0.07) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%); }
-.cursor-glow { position: fixed; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(98,196,218,0.14), transparent 65%); pointer-events: none; transform: translate(-50%,-50%); transition: transform 0.15s ease-out; z-index: -1; }
+.grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(28,79,92,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28,79,92,0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black 25%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 25%, transparent 75%);
+}
+.dark .grid-bg {
+  background-image:
+    linear-gradient(rgba(57,197,224,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57,197,224,0.05) 1px, transparent 1px);
+}
+.cursor-glow {
+  position: fixed; width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(31,143,170,0.18), transparent 65%);
+  pointer-events: none; transform: translate(-50%,-50%);
+  transition: transform 0.18s ease-out; z-index: -1;
+}
+.dark .cursor-glow { background: radial-gradient(circle, rgba(57,197,224,0.16), transparent 65%); }
 
-/* Glass */
-.glass { background: var(--glass-bg); border: 1px solid var(--border); backdrop-filter: blur(40px) saturate(180%); -webkit-backdrop-filter: blur(40px) saturate(180%); }
+/* ============ Glassmorphism (enhanced) ============ */
+.glass {
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow:
+    var(--elev-2),
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -1px 0 rgba(0,0,0,0.04);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.glass::before {
+  content: ""; position: absolute; inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.35) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.10) 100%);
+  pointer-events: none; opacity: 0.7;
+}
+.dark .glass::before {
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 30%, transparent 70%, rgba(57,197,224,0.05) 100%);
+}
+.glass-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(36px) saturate(200%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+}
 
-/* Nav */
-.nav { position: fixed; top: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 28px; padding: 10px 14px 10px 22px; border-radius: 999px; z-index: 50; width: min(900px, calc(100% - 32px)); justify-content: space-between; }
-.nav .brand { font-family: 'Space Grotesk'; font-weight: 700; font-size: 18px; letter-spacing: -0.02em; color: #1C4F5C; }
-.nav .brand span { color: #62C4DA; }
-.nav ul { list-style: none; display: flex; gap: 6px; }
-.nav-link { font-size: 13px; padding: 8px 14px; border-radius: 999px; color: #7AABBA; transition: all .25s; font-weight: 500; }
-.nav-link:hover { color: #62C4DA; }
-.nav-link.active { color: #1C4F5C; background: rgba(98,196,218,0.15); }
-.nav-cta { padding: 8px 16px; font-size: 13px; }
-.menu-btn { display: none; width: 36px; height: 36px; border-radius: 50%; background: rgba(98,196,218,0.12); position: relative; }
-.menu-btn span { position: absolute; left: 9px; right: 9px; height: 2px; background: #1C4F5C; border-radius: 2px; transition: .3s; }
-.menu-btn span:nth-child(1) { top: 13px; }
-.menu-btn span:nth-child(2) { bottom: 13px; }
-.menu-btn.open span:nth-child(1) { top: 17px; transform: rotate(45deg); }
-.menu-btn.open span:nth-child(2) { bottom: 17px; transform: rotate(-45deg); }
-
-/* Buttons */
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 14px; transition: transform .25s, box-shadow .25s; }
-.btn:hover { transform: translateY(-2px); }
-.btn-primary { background: linear-gradient(135deg, #62C4DA 0%, #4A9FB3 100%); color: #ffffff; box-shadow: 0 12px 40px rgba(98,196,218,0.35); }
-.btn-primary:hover { box-shadow: 0 20px 60px rgba(98,196,218,0.5); }
-.btn-glass { background: rgba(255,255,255,0.65); border: 1px solid rgba(98,196,218,0.3); color: #1C4F5C; }
-.btn-glass:hover { border-color: #62C4DA; }
-
-/* Sections */
+/* ============ Layout ============ */
 main { display: block; }
-.section { max-width: 1200px; margin: 0 auto; padding: 110px 24px; }
-.section-head { text-align: center; margin-bottom: 50px; }
-.kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: #62C4DA; }
-.section-head h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-top: 12px; color: #1C4F5C; }
-.section-head .sub { color: #7AABBA; margin-top: 14px; max-width: 520px; margin-left: auto; margin-right: auto; }
-.sub-head { font-size: 1.5rem; margin: 70px 0 24px; display: flex; align-items: center; gap: 12px; color: #1C4F5C; }
+.section { max-width: 1180px; margin: 0 auto; padding: 110px 24px; }
+.section-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+.section-head .subtitle { display: inline-block; margin-bottom: 14px; }
+.section-head h2 { margin-bottom: 14px; }
+.section-head .body { margin: 0 auto; }
 
-/* Hero */
-.hero { min-height: 100vh; display: flex; align-items: center; padding: 140px 24px 80px; max-width: 1200px; margin: 0 auto; }
-.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; width: 100%; }
-.chip { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; font-size: 12px; font-weight: 500; color: #1C4F5C; margin-bottom: 26px; background: rgba(98,196,218,0.15); border: 1px solid rgba(98,196,218,0.25); }
-.chip .dot, .dot { width: 8px; height: 8px; border-radius: 50%; background: #62C4DA; box-shadow: 0 0 12px rgba(98,196,218,0.6); }
-.dot.green { background: #FA855A; box-shadow: 0 0 10px rgba(250,133,90,0.5); }
-.hero-text h1 { font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 700; color: #1C4F5C; }
-.hero-text p { color: #7AABBA; margin-top: 22px; max-width: 520px; font-size: 1.05rem; }
+/* ============ Navigation ============ */
+.nav {
+  position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 12px 10px 22px; border-radius: var(--radius-full);
+  z-index: 100; width: min(960px, calc(100% - 32px));
+  justify-content: space-between;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow: var(--elev-2), inset 0 1px 0 var(--glass-highlight);
+}
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; }
+.brand span { color: var(--primary); }
+.nav-links { display: flex; gap: 4px; }
+.nav-link {
+  font-size: 0.8125rem; font-weight: 500;
+  padding: 9px 16px; border-radius: var(--radius-full);
+  color: var(--muted-foreground);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.nav-link:hover { color: var(--primary); background: var(--primary-soft); }
+.nav-link.active { color: var(--primary); background: var(--primary-soft-hover); }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+
+/* ============ Buttons (Primary/Secondary/Text · Normal/Hover/Pressed) ============ */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: var(--radius-full);
+  font-weight: 600; font-size: 0.875rem; line-height: 1;
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative; isolation: isolate;
+  white-space: nowrap;
+}
+.btn svg { width: 16px; height: 16px; }
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  color: var(--primary-foreground);
+  box-shadow: var(--elev-2), 0 8px 24px -6px var(--primary-soft-hover);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: var(--elev-3), var(--elev-glow); }
+.btn-primary:active { transform: translateY(0); box-shadow: var(--elev-1); }
+.btn-secondary {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-strong);
+  color: var(--foreground);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--elev-1);
+}
+.btn-secondary:hover { border-color: var(--primary); background: var(--glass-bg-strong); transform: translateY(-2px); box-shadow: var(--elev-2); }
+.btn-secondary:active { transform: translateY(0); }
+.btn-icon {
+  width: 42px; height: 42px; padding: 0; border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--primary-soft);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.btn-icon:hover { background: var(--primary-soft-hover); transform: translateY(-2px); box-shadow: var(--elev-2); }
+.btn-icon svg { width: 18px; height: 18px; }
+.nav-cta { padding: 10px 18px; font-size: 0.8125rem; }
+
+/* Mobile menu */
+.menu-btn {
+  display: none; width: 40px; height: 40px; border-radius: 12px;
+  background: var(--primary-soft); position: relative;
+}
+.menu-btn span {
+  position: absolute; left: 11px; right: 11px; height: 2px;
+  background: var(--foreground); border-radius: 2px; transition: 0.3s;
+}
+.menu-btn span:nth-child(1) { top: 14px; }
+.menu-btn span:nth-child(2) { bottom: 14px; }
+.menu-btn.open span:nth-child(1) { top: 19px; transform: rotate(45deg); }
+.menu-btn.open span:nth-child(2) { bottom: 19px; transform: rotate(-45deg); }
+
+/* ============ Chips ============ */
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 14px; border-radius: var(--radius-full);
+  font-size: 0.78rem; font-weight: 500;
+  background: var(--primary-soft);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+.chip .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--success); box-shadow: 0 0 10px var(--success);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+/* ============ Hero ============ */
+.hero { min-height: 100vh; display: flex; align-items: center; padding: 130px 24px 80px; max-width: 1180px; margin: 0 auto; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; width: 100%; }
+.hero-text h1 { margin-top: 22px; }
+.hero-text .body { margin-top: 22px; max-width: 520px; font-size: 1.05rem; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-.socials { display: flex; align-items: center; gap: 12px; margin-top: 38px; }
-.socials .label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #7AABBA; }
-.socials .bar { width: 50px; height: 1px; background: rgba(98,196,218,0.25); }
-.social { width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: all .25s; font-size: 15px; color: #62C4DA; }
-.social svg { display: block; flex-shrink: 0; }
-.social:hover { color: #4A9FB3; background: rgba(98,196,218,0.12); transform: translateY(-3px) scale(1.08); }
 
+.socials { display: flex; align-items: center; gap: 12px; margin-top: 38px; flex-wrap: wrap; }
+.socials .label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-foreground); font-weight: 600; }
+.socials .bar { width: 40px; height: 1px; background: var(--border-strong); }
+.social {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  color: var(--foreground);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: var(--elev-1);
+}
+.social svg { width: 18px; height: 18px; }
+.social:hover { transform: translateY(-3px) scale(1.05); box-shadow: var(--elev-2); border-color: var(--primary); }
+.social[data-brand="facebook"]:hover { color: #1877F2; }
+.social[data-brand="instagram"]:hover { color: #E4405F; }
+.social[data-brand="email"]:hover { color: #EA4335; }
+.social[data-brand="linkedin"]:hover { color: #0A66C2; }
+
+/* ============ Hero portrait ============ */
 .hero-portrait { position: relative; display: flex; justify-content: center; }
-.portrait-frame { width: min(420px, 90%); aspect-ratio: 3/4; border-radius: 36px; padding: 12px; position: relative; z-index: 2; background: rgba(246,255,234,0.8); border: 1px solid rgba(98,196,218,0.3); }
-.portrait-glow { position: absolute; inset: -30px; border-radius: 50px; background: linear-gradient(135deg, #62C4DA 0%, #4A9FB3 100%); filter: blur(60px); opacity: 0.2; z-index: 1; }
-.portrait-inner { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; background: linear-gradient(135deg, #FFDE96 0%, #FFEFCC 100%); position: relative; }
-.portrait-inner img { width: 100%; height: 100%; object-fit: cover; object-position: top; animation: float-y 6s ease-in-out infinite; }
-@keyframes float-y { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-.float-card { position: absolute; padding: 12px 16px; border-radius: 16px; font-size: 12px; z-index: 3; background: rgba(246,255,234,0.9); border: 1px solid rgba(98,196,218,0.3); color: #1C4F5C; box-shadow: 0 10px 40px rgba(98,196,218,0.15); }
-.fc1 { left: -20px; top: 40px; display: flex; gap: 8px; align-items: center; animation: float-y 5s ease-in-out infinite; color: #1C4F5C; }
-.fc2 { right: -10px; bottom: 80px; animation: float-y 7s ease-in-out infinite reverse; }
-.fc2 span { color: #7AABBA; }
-.fc3.pill { left: 40px; bottom: -12px; padding: 8px 16px; color: #62C4DA; font-weight: 600; border-radius: 999px; animation: wobble 8s ease-in-out infinite; background: rgba(98,196,218,0.12); border: 1px solid rgba(98,196,218,0.3); }
-@keyframes wobble { 0%,100%{transform:rotate(0)} 25%{transform:rotate(4deg)} 75%{transform:rotate(-4deg)} }
+.portrait-frame {
+  width: min(380px, 88%); aspect-ratio: 3/4; border-radius: 30px; padding: 10px;
+  position: relative; z-index: 2;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: var(--elev-3), inset 0 1px 0 var(--glass-highlight);
+}
+.portrait-glow {
+  position: absolute; inset: -28px; border-radius: 50px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  filter: blur(60px); opacity: 0.28; z-index: 1;
+  animation: glowPulse 6s ease-in-out infinite;
+}
+@keyframes glowPulse { 0%,100% { opacity: 0.22; } 50% { opacity: 0.38; } }
+.portrait-inner {
+  width: 100%; height: 100%; border-radius: 24px; overflow: hidden;
+  background: linear-gradient(135deg, #FFDE96 0%, #FFEFCC 100%);
+  position: relative;
+}
+.dark .portrait-inner { background: linear-gradient(135deg, #0d1f30 0%, #152540 100%); }
+.portrait-inner img { width: 100%; height: 100%; object-fit: cover; object-position: top; animation: floatY 6s ease-in-out infinite; }
+@keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-/* About */
+.float-card {
+  position: absolute; padding: 12px 16px; border-radius: 14px; font-size: 0.78rem;
+  z-index: 3;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  color: var(--foreground);
+  box-shadow: var(--elev-3), inset 0 1px 0 var(--glass-highlight);
+  display: flex; align-items: center; gap: 8px;
+}
+.fc1 { left: -16px; top: 40px; animation: floatY 5s ease-in-out infinite; }
+.fc1 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 10px var(--success); }
+.fc2 { right: -10px; bottom: 100px; animation: floatY 7s ease-in-out infinite reverse; flex-direction: column; align-items: flex-start; gap: 2px; }
+.fc2 strong { font-size: 0.82rem; }
+.fc2 span { color: var(--muted-foreground); font-size: 0.72rem; }
+.fc3 {
+  left: 30px; bottom: -14px; padding: 8px 16px; border-radius: var(--radius-full);
+  color: var(--primary); font-weight: 600; animation: wobble 8s ease-in-out infinite;
+  background: var(--primary-soft); border: 1px solid var(--border-strong);
+}
+@keyframes wobble { 0%,100% { transform: rotate(0); } 25% { transform: rotate(3deg); } 75% { transform: rotate(-3deg); } }
+
+/* ============ Cards ============ */
+.card {
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: var(--elev-1), inset 0 1px 0 var(--glass-highlight);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  overflow: hidden;
+}
+.card::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 35%, transparent 65%, var(--glass-tint) 100%);
+  pointer-events: none; opacity: 0.6;
+}
+.dark .card::before {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 35%, transparent 65%, var(--glass-tint) 100%);
+}
+.card > * { position: relative; z-index: 1; }
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary-soft-hover);
+  box-shadow: var(--elev-3);
+}
+.card-big { padding: 36px; }
+.card .card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.card h3 { margin-bottom: 4px; }
+.card h4 { font-size: 1.05rem; margin: 8px 0 4px; }
+.card p { color: var(--muted-foreground); line-height: 1.65; }
+.card .meta {
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted-foreground); margin-bottom: 12px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.card .meta::before { content: ""; width: 16px; height: 1.5px; background: var(--primary); border-radius: 2px; }
+.card .role { color: var(--primary); font-weight: 600; margin-top: 4px; font-size: 0.95rem; }
+.card .year { margin-top: 14px; font-weight: 600; color: var(--accent); font-size: 0.9rem; }
+
+.icon-box {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+  box-shadow: var(--elev-2), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.icon-box svg { width: 22px; height: 22px; stroke-width: 2; }
+
+/* ============ About ============ */
 .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 22px; }
-.card { padding: 28px; border-radius: var(--radius); position: relative; overflow: hidden; }
-.card.big { padding: 36px; }
-.card h3 { font-size: 1.4rem; margin-bottom: 6px; color: #1C4F5C; }
-.card h4 { font-size: 1.1rem; margin: 8px 0 4px; color: #1C4F5C; }
-.card p { color: #5A8A96; }
-.card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.icon-box { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #62C4DA 0%, #4A9FB3 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 700; }
 .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.stat { padding: 22px; border-radius: 18px; }
-.stat .num { font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, #62C4DA, #4A9FB3); -webkit-background-clip: text; background-clip: text; color: transparent; font-family: 'Space Grotesk'; }
-.stat div:last-child { font-size: 12px; color: #7AABBA; margin-top: 4px; }
+.stat {
+  padding: 22px; border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--elev-1), inset 0 1px 0 var(--glass-highlight);
+  transition: all 0.25s ease;
+}
+.stat:hover { transform: translateY(-2px); border-color: var(--primary-soft-hover); box-shadow: var(--elev-2); }
+.stat .num {
+  font-size: 1.85rem; font-weight: 700; font-family: var(--font-display);
+  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  letter-spacing: -0.02em;
+}
+.stat .num-label { font-size: 0.78rem; color: var(--muted-foreground); margin-top: 4px; font-weight: 500; }
 
-.exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 60px; }
-.meta { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #7AABBA; margin-bottom: 12px; }
-.role { color: #62C4DA; font-weight: 500; margin-top: 4px; }
-
+.exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 64px; }
 .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.year { margin-top: 14px; font-weight: 600; color: #FA855A; }
 
+.sub-head {
+  font-size: 1.4rem; margin: 70px 0 24px;
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-display); font-weight: 700;
+}
+.sub-head .icon-pill {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--primary-soft); color: var(--primary);
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+}
+.sub-head .icon-pill svg { width: 18px; height: 18px; }
+
+/* ============ Skills ============ */
 .skills { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
-.skill { padding: 22px 16px; border-radius: 18px; text-align: center; font-size: 13px; font-weight: 600; transition: transform .25s; color: #1C4F5C; }
-.skill:hover { transform: translateY(-4px); }
-.skill .ico { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #62C4DA 0%, #4A9FB3 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: #ffffff; font-size: 18px; }
+.skill {
+  padding: 22px 12px; border-radius: var(--radius-md);
+  text-align: center; font-size: 0.82rem; font-weight: 600;
+  background: var(--glass-bg);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--elev-1), inset 0 1px 0 var(--glass-highlight);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  color: var(--foreground);
+}
+.skill:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-soft-hover);
+  box-shadow: var(--elev-3);
+}
+.skill .ico {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px; color: #fff;
+  box-shadow: var(--elev-1), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.skill .ico svg { width: 22px; height: 22px; }
 
-/* Projects */
-.filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 36px; }
-.filter { padding: 9px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; color: #7AABBA; background: rgba(255,255,255,0.5); border: 1px solid rgba(98,196,218,0.15); transition: all .25s; }
-.filter:hover { color: #62C4DA; border-color: rgba(98,196,218,0.35); }
-.filter.active { background: linear-gradient(135deg, #62C4DA 0%, #4A9FB3 100%); color: #ffffff; box-shadow: 0 12px 40px rgba(98,196,218,0.3); border-color: transparent; }
-.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
-.project { border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; height: 100%; cursor: pointer; transition: transform .3s, box-shadow .3s; text-align: left; }
-.project:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(98,196,218,0.2); }
-.project .art { width: 100%; aspect-ratio: 4/3; border-radius: 16px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk'; font-weight: 700; font-size: 64px; color: rgba(255,255,255,0.4); flex-shrink: 0; }
-.project .art::after { content: 'Preview'; position: absolute; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; opacity: 0; transition: .3s; font-size: 13px; color: #fff; font-family: 'Inter'; font-weight: 600; }
-.project:hover .art::after { opacity: 1; }
-.project .info { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
-.project .info .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
-.project .info h3 { font-size: 1rem; color: #1C4F5C; font-weight: 600; line-height: 1.3; }
-.project .info .cat { font-size: 11px; color: #62C4DA; font-weight: 600; white-space: nowrap; text-transform: uppercase; }
-.project .info p { font-size: 13px; color: #5A8A96; margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex-grow: 1; }
-.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 12px; }
-.tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(98,196,218,0.12); border-radius: 999px; padding: 4px 10px; color: #62C4DA; white-space: nowrap; }
-
-/* Projects Grid Layout */
-.section-header { text-align: center; margin-bottom: 50px; }
-.section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: #62C4DA; margin-bottom: 12px; display: block; }
-.section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #1C4F5C; margin: 0; }
+/* ============ Projects ============ */
 .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.project-card { background: rgba(246,255,234,0.6); backdrop-filter: blur(40px) saturate(180%); border: 1px solid rgba(98,196,218,0.2); border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; height: 100%; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
-.project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(98,196,218,0.2); border-color: rgba(98,196,218,0.4); }
-.project-image { width: 100%; height: 200px; background: linear-gradient(135deg, #E8F9FF 0%, #FFDE96 100%); display: flex; align-items: center; justify-content: center; padding: 24px; }
-.project-image svg { color: #62C4DA; }
-.project-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
-.project-content h3 { font-size: 1.2rem; font-weight: 700; color: #1C4F5C; margin: 0 0 12px; }
-.project-content p { font-size: 13px; color: #5A8A96; line-height: 1.6; margin: 0 0 12px; flex-grow: 1; }
-.project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-.project-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(98,196,218,0.12); border-radius: 999px; padding: 4px 10px; color: #62C4DA; white-space: nowrap; }
-.gd-thumb:hover { border-color: #62C4DA !important; }
+.project-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  background: var(--glass-bg);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: var(--elev-1), inset 0 1px 0 var(--glass-highlight);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-soft-hover);
+  box-shadow: var(--elev-3);
+}
+.project-image {
+  width: 100%; height: 200px;
+  background: linear-gradient(135deg, var(--primary-soft), rgba(255,222,150,0.4));
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; position: relative; overflow: hidden;
+}
+.dark .project-image { background: linear-gradient(135deg, #0D2136 0%, #122030 100%); }
+.project-image svg { color: var(--primary); width: 56px; height: 56px; }
+.project-image img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; transition: transform 0.5s ease; }
+.project-card:hover .project-image img { transform: scale(1.04); }
+.project-content { padding: 20px 22px 22px; display: flex; flex-direction: column; flex-grow: 1; gap: 10px; }
+.project-content h3 { font-size: 1.1rem; }
+.project-content p { font-size: 0.875rem; color: var(--muted-foreground); line-height: 1.6; flex-grow: 1; }
 
-/* Lightbox */
-.lightbox { position: fixed; inset: 0; background: rgba(28,79,92,0.5); backdrop-filter: blur(14px); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; animation: fade .25s ease; }
-.lightbox[hidden] { display: none; }
-@keyframes fade { from {opacity: 0} to {opacity: 1} }
-.lightbox-inner { max-width: 640px; width: 100%; padding: 28px; border-radius: 26px; position: relative; background: rgba(246,255,234,0.92); border: 1px solid rgba(98,196,218,0.3); }
-.lightbox-inner h3 { font-size: 1.6rem; margin: 6px 0 18px; color: #1C4F5C; }
-.lb-art { aspect-ratio: 16/9; border-radius: 18px; margin-bottom: 18px; }
-.close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%; background: rgba(98,196,218,0.12); font-size: 22px; color: #1C4F5C; cursor: pointer; transition: all .2s; }
-.close:hover { background: rgba(98,196,218,0.25); color: #62C4DA; }
+.badge {
+  display: inline-flex; align-items: center; align-self: flex-start;
+  padding: 4px 10px; border-radius: var(--radius-full);
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  color: #fff;
+  box-shadow: var(--elev-1);
+}
 
-/* Contact */
-.contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px; }
-.form { padding: 32px; display: flex; flex-direction: column; gap: 18px; }
-.field { position: relative; }
-.field input, .field textarea { width: 100%; padding: 18px 16px 12px; background: rgba(255,255,255,0.7); border: 1px solid rgba(98,196,218,0.25); border-radius: 14px; color: #1C4F5C; font: inherit; transition: border-color .2s, box-shadow .2s; resize: vertical; }
-.field input:focus, .field textarea:focus { outline: none; border-color: #62C4DA; box-shadow: 0 0 0 3px rgba(98,196,218,0.12); }
-.field label { position: absolute; left: 16px; top: 16px; color: #7AABBA; pointer-events: none; transition: .2s; font-size: 14px; }
-.field input:focus + label, .field input:not(:placeholder-shown) + label,
-.field textarea:focus + label, .field textarea:not(:placeholder-shown) + label { top: 6px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #62C4DA; }
-.form-status { font-size: 13px; color: #62C4DA; min-height: 18px; }
-.contact-info { display: flex; flex-direction: column; gap: 16px; }
-.contact-info h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.2em; color: #7AABBA; margin-bottom: 10px; }
-.contact-info a { color: #62C4DA; }
-.socials-card .row { display: flex; gap: 10px; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.project-tag {
+  font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em;
+  background: var(--primary-soft); color: var(--primary);
+  border-radius: var(--radius-full); padding: 4px 10px; font-weight: 600;
+}
 
-/* Footer */
-.footer { text-align: center; padding: 40px 24px; color: #7AABBA; font-size: 13px; border-top: 1px solid rgba(98,196,218,0.15); margin-top: 60px; }
+.thumbs { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.thumb {
+  width: 54px; height: 54px; border-radius: 10px;
+  overflow: hidden; cursor: pointer;
+  border: 2px solid var(--border);
+  transition: all 0.25s ease;
+  box-shadow: var(--elev-1);
+}
+.thumb:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--elev-2); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Reveal */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+/* ============ Contact ============ */
+.contact-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  max-width: 920px; margin: 0 auto;
+}
+.contact-card-item h4 {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.22em;
+  color: var(--primary); margin-bottom: 12px; font-weight: 700;
+  display: flex; align-items: center; gap: 8px;
+}
+.contact-card-item h4 svg { width: 14px; height: 14px; }
+.contact-card-item p { color: var(--muted-foreground); font-size: 0.92rem; line-height: 1.7; }
+.contact-card-item a.link { color: var(--primary); font-weight: 600; font-size: 0.92rem; word-break: break-word; }
+.contact-card-item a.link:hover { text-decoration: underline; }
+.contact-card-item .row { display: flex; gap: 10px; margin-top: 4px; }
+
+/* ============ Footer ============ */
+.footer {
+  text-align: center; padding: 40px 24px;
+  color: var(--muted-foreground); font-size: 0.85rem;
+  border-top: 1px solid var(--border); margin-top: 40px;
+}
+
+/* ============ Lightbox ============ */
+.lightbox {
+  position: fixed; inset: 0; background: rgba(8, 14, 20, 0.82);
+  z-index: 9999; display: none; align-items: center; justify-content: center;
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  padding: 24px; animation: fadeIn 0.25s ease;
+}
+.lightbox.show { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.lb-content { text-align: center; max-width: 95%; max-height: 90%; }
+.lb-content img { max-width: 100%; max-height: 80vh; border-radius: 18px; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+.lb-btn {
+  position: absolute; width: 48px; height: 48px; border-radius: 14px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18);
+  color: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+}
+.lb-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
+.lb-btn svg { width: 22px; height: 22px; }
+.lb-close { top: 24px; right: 24px; }
+.lb-prev { left: 24px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 24px; top: 50%; transform: translateY(-50%); }
+
+/* ============ Reveal animation ============ */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.2,0.8,0.2,1), transform 0.7s cubic-bezier(0.2,0.8,0.2,1); }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .nav ul { position: fixed; top: 80px; left: 16px; right: 16px; flex-direction: column; padding: 16px; border-radius: 22px; background: rgba(246,255,234,0.9); backdrop-filter: blur(40px); border: 1px solid rgba(98,196,218,0.25); transform: scale(.95); opacity: 0; pointer-events: none; transition: .25s; }
-  .nav ul.open { opacity: 1; transform: scale(1); pointer-events: auto; }
-  .nav-link { padding: 14px; }
+/* ============ Responsive ============ */
+@media (max-width: 960px) {
+  .nav-links {
+    position: fixed; top: 84px; left: 16px; right: 16px;
+    flex-direction: column; padding: 14px;
+    border-radius: 22px;
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+    box-shadow: var(--elev-3);
+    transform: scale(0.95); opacity: 0; pointer-events: none;
+    transition: 0.25s;
+  }
+  .nav-links.open { opacity: 1; transform: scale(1); pointer-events: auto; }
+  .nav-link { padding: 12px 16px; }
   .nav-cta { display: none; }
   .menu-btn { display: block; }
   .hero-grid { grid-template-columns: 1fr; gap: 60px; }
   .hero-portrait { order: -1; }
   .about-grid { grid-template-columns: 1fr; }
-  .exp-grid, .edu-grid, .contact-grid { grid-template-columns: 1fr; }
+  .exp-grid, .edu-grid, .contact-cards { grid-template-columns: 1fr; }
   .skills { grid-template-columns: repeat(3, 1fr); }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
   .section { padding: 80px 18px; }
-  .hero { padding: 120px 18px 60px; }
+  .hero { padding: 110px 18px 60px; }
   .skills { grid-template-columns: repeat(2, 1fr); }
   .projects-grid { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr 1fr; }
@@ -436,418 +641,439 @@ main { display: block; }
 </style>
 </head>
 <body>
-  <div class="bg">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-    <div class="grid"></div>
-    <div class="cursor-glow" id="cursorGlow"></div>
-  </div>
 
-  <nav class="nav glass" id="nav">
-    <a href="#home" class="brand">IJE<span>.</span></a>
-    <ul>
-      <li><a href="#home" class="nav-link active">Home</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
+<!-- Background -->
+<div class="bg" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="grid-bg"></div>
+</div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="#home" class="brand">IJE<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="nav-link active">Home</a></li>
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
     <a href="#contact" class="btn btn-primary nav-cta">Let's Talk</a>
+    <button class="btn-icon" id="darkModeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon-icon" style="display:none;" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span></button>
-  </nav>
+  </div>
+</nav>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="hero-grid">
-        <div class="hero-text reveal">
-          <span class="chip glass"><span class="dot"></span> Available for creative collaborations</span>
-          <h1>Creative <em>Designer</em><br/>&amp; IT Professional</h1>
-          <p>Hi, I'm <strong>Ian Jay Emong</strong> — a graphic designer, business owner, BSIT graduate, and creative thinker crafting bold visuals and intuitive digital experiences.</p>
-          <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary">View My Work →</a>
-            <a href="IJE_RESUME.pdf" target="_blank" class="btn btn-glass">↓ Resume</a>
+<main>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-grid">
+      <div class="hero-text reveal">
+        <span class="chip"><span class="dot"></span> Available for creative collaborations</span>
+        <h1 class="h1">Creative <em>Designer</em><br/>&amp; IT Professional</h1>
+        <p class="body">Hi, I'm <strong>Ian Jay Emong</strong> — a graphic designer, business owner, BSIT graduate, and creative thinker crafting bold visuals and intuitive digital experiences.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">
+            View My Work
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="IJE_RESUME.pdf" target="_blank" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Resume
+          </a>
+        </div>
+        <div class="socials">
+          <span class="label">Connect</span>
+          <span class="bar"></span>
+          <a href="mailto:emongianjay.ije@gmail.com" aria-label="Email" class="social" data-brand="email">
+            <!-- Gmail logo -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" class="social" data-brand="facebook">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="social" data-brand="instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-portrait reveal">
+        <div class="portrait-glow"></div>
+        <div class="portrait-frame">
+          <div class="portrait-inner">
+            <img src="IJOE.jpg" alt="Ian Jay Emong portrait"/>
           </div>
-          <div class="socials">
-            <span class="label">Connect</span>
-            <span class="bar"></span>
-            <a href="mailto:emongianjay.ije@gmail.com" aria-label="Email" class="social glass">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </a>
-            <a href="https://facebook.com" aria-label="Facebook" class="social glass">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-            </a>
-            <a href="https://instagram.com" aria-label="Instagram" class="social glass">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
+        </div>
+        <div class="float-card fc1"><span class="dot"></span> 4+ years designing</div>
+        <div class="float-card fc2"><strong>Xhieyan Studio</strong><span>Founder &amp; Creative</span></div>
+        <div class="float-card fc3">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-2px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Surigao, PH
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <header class="section-head reveal">
+      <span class="subtitle">About</span>
+      <h2 class="h2">The story <em>behind the work</em></h2>
+    </header>
+
+    <div class="about-grid">
+      <div class="card card-big reveal">
+        <div class="card-head">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 7.36H22l-6.19 4.5L18.2 21 12 16.5 5.8 21l2.39-7.14L2 9.36h7.61z"/></svg>
           </div>
+          <h3>It's Ian Jay</h3>
         </div>
-        <div class="hero-portrait reveal">
-          <div class="portrait-glow"></div>
-          <div class="portrait-frame glass">
-            <div class="portrait-inner">
-              <img src="/ian-hero.png" alt="Ian Jay Emong portrait" />
-            </div>
-          </div>
-          <div class="float-card glass fc1"><span class="dot green"></span> 4+ years designing</div>
-          <div class="float-card glass fc2"><strong>Xhieyan Studio</strong><br/><span>Founder & Creative</span></div>
-          <div class="float-card glass fc3 pill">✦ Surigao, PH</div>
-        </div>
+        <p>A business owner and graphic designer with a Bachelor of Science in Information Technology. I thrive on challenges that push my creativity and technical skills, turning ideas into innovative, refined designs. Hard-working, adaptable, and deeply curious — I aim to contribute to the growth of every team I join while continuing to evolve as a creative professional.</p>
       </div>
-    </section>
-
-    <section id="about" class="section">
-      <header class="section-head reveal">
-        <span class="kicker">About</span>
-        <h2>The story <em>behind the work</em></h2>
-      </header>
-      <div class="about-grid">
-        <div class="card glass big reveal">
-          <div class="card-head"><div class="icon-box">✦</div><h3>It's Ian Jay</h3></div>
-          <p>A business owner and graphic designer with a Bachelor of Science in Information Technology. I thrive on challenges that push my creativity and technical skills, turning ideas into innovative, refined designs. Hard-working, adaptable, and deeply curious — I aim to contribute to the growth of every team I join while continuing to evolve as a creative professional.</p>
-        </div>
-        <div class="stats reveal">
-          <div class="stat glass"><div class="num">4+</div><div>Years Designing</div></div>
-          <div class="stat glass"><div class="num">50+</div><div>Projects Shipped</div></div>
-          <div class="stat glass"><div class="num">1</div><div>Studio Founded</div></div>
-          <div class="stat glass"><div class="num">BSIT</div><div>Class of 2026</div></div>
-        </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="num">4+</div><div class="num-label">Years Designing</div></div>
+        <div class="stat"><div class="num">50+</div><div class="num-label">Projects Shipped</div></div>
+        <div class="stat"><div class="num">1</div><div class="num-label">Studio Founded</div></div>
+        <div class="stat"><div class="num">BSIT</div><div class="num-label">Class of 2026</div></div>
       </div>
-
-      <div class="exp-grid">
-        <div class="card glass reveal">
-          <div class="meta">▸ Mar 2026 — May 2026</div>
-          <h3>IT Intern · Marketing</h3>
-          <p class="role">X-Meta Technologies Inc.</p>
-          <p>Drove marketing operations end-to-end — managing client databases in Excel, executing email blast campaigns, and designing promotional and hiring posters in Canva. Coordinated quotations with vendors and owned mall directory mapping with accurate backend updates.</p>
-        </div>
-        <div class="card glass reveal">
-          <div class="meta">▸ Dec 2024 — Present</div>
-          <h3>Founder & Creative Lead</h3>
-          <p class="role">Xhieyan Printing Studio</p>
-          <p>A boutique print and design studio in Surigao City serving students, professionals, and small businesses with high-quality printing, photo prints, and custom graphic design — from posters and menus to full branding systems and promotional materials.</p>
-        </div>
-      </div>
-
-      <h3 class="sub-head reveal">🎓 Education</h3>
-      <div class="edu-grid">
-        <div class="card glass reveal">
-          <span class="kicker">Tertiary</span>
-          <h4>Bachelor of Science in Information Technology</h4>
-          <p>Northeastern Mindanao Colleges</p>
-          <p class="year">2022 — 2026</p>
-        </div>
-        <div class="card glass reveal">
-          <span class="kicker">Senior High School</span>
-          <h4>TVL — ICT</h4>
-          <p>STI College Surigao</p>
-          <p class="year">2020 — 2022</p>
-        </div>
-      </div>
-
-      <h3 class="sub-head reveal">🎨 Expertise</h3>
-      <div class="skills">
-        <div class="skill glass reveal"><div class="ico">✎</div>Graphic Design</div>
-        <div class="skill glass reveal"><div class="ico">✦</div>Branding</div>
-        <div class="skill glass reveal"><div class="ico">▦</div>Layout Design</div>
-        <div class="skill glass reveal"><div class="ico">📣</div>Marketing Design</div>
-        <div class="skill glass reveal"><div class="ico">🖨</div>Printing Services</div>
-        <div class="skill glass reveal"><div class="ico">🎨</div>Canva Pro</div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="section-header reveal">
-            <p class="section-label">MY WORK</p>
-            <h2 class="section-title">Projects & Portfolio</h2>
-        </div>
-        <div class="projects-grid">
-            <div class="project-card reveal">
-                <div class="project-image">
-                    <svg class="icon" style="width: 64px; height: 64px;" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                    </svg>
-                </div>
-                <div class="project-content">
-                    <h3>Personal Portfolio Website</h3>
-                    <p>A responsive portfolio website showcasing my skills, education, and projects built with HTML, CSS, and JavaScript.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">HTML</span>
-                        <span class="project-tag">CSS</span>
-                        <span class="project-tag">JavaScript</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Graphic Design: Birthday Poster -->
-            <div class="project-card reveal">
-                <div class="project-image" style="padding: 0; height: auto; background: none;">
-                    <img src="bboy.png" alt="Birthday Poster - Aidrian" style="width: 100%; height: 200px; object-fit: cover; display: block; cursor: pointer;" onclick="openLightbox(0)">
-                </div>
-                <div class="project-content">
-                    <h3>Birthday Poster</h3>
-                    <span style="display:inline-block; padding:0.3rem 0.7rem; background:linear-gradient(135deg, var(--primary), var(--secondary)); color:#fff; font-size:0.75rem; font-weight:700; border-radius:50px; margin-bottom:0.8rem;">Graphic Design</span>
-                    <p>A collection of personalized birthday posters I create for my friends whenever their special day is coming up. Each design is customized to match their personality and style, combining creative layouts, thoughtful details, and eye-catching visuals to make their birthday celebration extra special.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Graphic Design</span>
-                        <span class="project-tag">Poster</span>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                        <div class="gd-thumb" onclick="openLightbox(0)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="bboy.png" alt="Aidrian Poster" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(1)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="patrick.png" alt="Patrick Poster" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(2)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="joefred.png" alt="Joefred Poster" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(3)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="aira.png" alt="Aira Poster" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Graphic Design: Invitation Card Design -->
-            <div class="project-card reveal">
-                <div class="project-image" style="padding: 0; height: auto; background: none;">
-                    <img src="2.png" alt="Invitation Card - Front" style="width: 100%; height: 200px; object-fit: cover; display: block; cursor: pointer;" onclick="openLightbox(4)">
-                </div>
-                <div class="project-content">
-                    <h3>Invitation Card Design</h3>
-                    <span style="display:inline-block; padding:0.3rem 0.7rem; background:linear-gradient(135deg, var(--primary), var(--secondary)); color:#fff; font-size:0.75rem; font-weight:700; border-radius:50px; margin-bottom:0.8rem;">Graphic Design</span>
-                    <p>This project marks the very beginning of my journey in the printing business from home. It was my first official client project — a custom invitation card for a baby boy's Christening and 1st Birthday celebration. I designed a bright, playful, and child-friendly layout that combined celebratory elements, soft blue tones, and personalized details to match the family's vision.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Graphic Design</span>
-                        <span class="project-tag">Invitation</span>
-                        <span class="project-tag">Print</span>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                        <div class="gd-thumb" onclick="openLightbox(4)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="2.png" alt="Invitation Front" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(5)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="3.png" alt="Invitation Back" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Graphic Design: Promoting Poster -->
-            <div class="project-card reveal">
-                <div class="project-image" style="padding: 0; height: auto; background: none;">
-                    <img src="p2.png" alt="Promoting Poster" style="width: 100%; height: 200px; object-fit: cover; display: block; cursor: pointer;" onclick="openLightbox(7)">
-                </div>
-                <div class="project-content">
-                    <h3>Promoting Poster</h3>
-                    <span style="display:inline-block; padding:0.3rem 0.7rem; background:linear-gradient(135deg, var(--primary), var(--secondary)); color:#fff; font-size:0.75rem; font-weight:700; border-radius:50px; margin-bottom:0.8rem;">Graphic Design</span>
-                    <p>A self-created advertising poster designed to promote my printing services. I incorporated engaging elements such as countdowns, step-by-step guides, and clear service descriptions to create an eye-catching and informative layout that attracts potential customers.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Graphic Design</span>
-                        <span class="project-tag">Advertising</span>
-                        <span class="project-tag">Print</span>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap;">
-                        <div class="gd-thumb" onclick="openLightbox(6)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="p1.png" alt="Promo 1" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(7)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="p2.png" alt="Promo 2" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(8)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="p3.png" alt="Promo 3" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(9)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="p4.png" alt="Promo 4" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(10)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="p5.png" alt="Promo 5" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Graphic Design: Aesthetic K-Pop Inspired Design -->
-            <div class="project-card reveal">
-                <div class="project-image" style="padding: 0; height: auto; background: none;">
-                    <img src="front.png" alt="K-Pop Inspired Design - Front" style="width: 100%; height: 200px; object-fit: cover; display: block; cursor: pointer;" onclick="openLightbox(11)">
-                </div>
-                <div class="project-content">
-                    <h3>Aesthetic K-Pop Design</h3>
-                    <span style="display:inline-block; padding:0.3rem 0.7rem; background:linear-gradient(135deg, var(--primary), var(--secondary)); color:#fff; font-size:0.75rem; font-weight:700; border-radius:50px; margin-bottom:0.8rem;">Graphic Design</span>
-                    <p>A personal creative project where I designed an aesthetic K-Pop inspired layout from scratch featuring my favorite idol. I explored editing, color grading, and composition, then printed the final design as a PVC card. This project showcases my creativity, attention to detail, and passion for design experimentation.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Graphic Design</span>
-                        <span class="project-tag">K-Pop</span>
-                        <span class="project-tag">PVC Card</span>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                        <div class="gd-thumb" onclick="openLightbox(11)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="front.png" alt="K-Pop Front" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(12)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="back.png" alt="K-Pop Back" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Graphic Design: Logos -->
-            <div class="project-card reveal">
-                <div class="project-image" style="padding: 0; height: auto; background: none;">
-                    <img src="lg4.png" alt="Logo - Sample4" style="width: 100%; height: 200px; object-fit: cover; display: block; cursor: pointer;" onclick="openLightbox(14)">
-                </div>
-                <div class="project-content">
-                    <h3>Logos</h3>
-                    <span style="display:inline-block; padding:0.3rem 0.7rem; background:linear-gradient(135deg, var(--primary), var(--secondary)); color:#fff; font-size:0.75rem; font-weight:700; border-radius:50px; margin-bottom:0.8rem;">Graphic Design</span>
-                    <p>A custom logo design created for my mini printing business. This project highlights my ability to build a brand identity through thoughtful typography, color selection, and clean, memorable design.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Logo Design</span>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap;">
-                        <div class="gd-thumb" onclick="openLightbox(13)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="lg1.png" alt="Logo 1" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(14)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="lg2.png" alt="Logo 2" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(15)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="lg3.png" alt="Logo 3" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(16)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="lg4.png" alt="Logo 4" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(17)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="lg5.png" alt="Logo 5" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="gd-thumb" onclick="openLightbox(18)" style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: border-color 0.3s;">
-                            <img src="lg6.png" alt="Logo 6" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal">
-                <div class="project-image">
-                    <svg class="icon" style="width: 64px; height: 64px;" viewBox="0 0 24 24">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                        <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg>
-                </div>
-                <div class="project-content">
-                    <h3>Coming Soon</h3>
-                    <p>More exciting projects are in development. Stay tuned for updates!</p>
-                    <div class="project-tags">
-                        <span class="project-tag">In Progress</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lightbox Modal -->
-    <div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center; backdrop-filter:blur(10px);" onclick="closeLightbox(event)">
-        <button onclick="closeLightbox(event)" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.15); border:none; color:#fff; width:44px; height:44px; border-radius:12px; cursor:pointer; font-size:1.5rem; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(10px);">&times;</button>
-        <button id="lb-prev" onclick="changeLightbox(-1, event)" style="position:absolute; left:20px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; width:44px; height:44px; border-radius:12px; cursor:pointer; font-size:1.5rem; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(10px);">&#8249;</button>
-        <button id="lb-next" onclick="changeLightbox(1, event)" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; width:44px; height:44px; border-radius:12px; cursor:pointer; font-size:1.5rem; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(10px);">&#8250;</button>
-        <div style="text-align:center; max-width:90%; max-height:90%;">
-            <img id="lb-img" src="" alt="Preview" style="max-width:100%; max-height:80vh; border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,0.5);">
-            <p id="lb-caption" style="color:#fff; margin-top:1rem; font-size:1rem; font-weight:600;"></p>
-        </div>
     </div>
 
-    <section id="contact" class="section">
-      <header class="section-head reveal">
-        <span class="kicker">Contact</span>
-        <h2>Let's create <em>something bold</em></h2>
-        <p class="sub">Have a project, collaboration, or opportunity in mind? Drop a message below.</p>
-      </header>
-      <div class="contact-grid">
-        <form class="card glass form reveal" id="contactForm" novalidate>
-          <div class="field"><input type="text" id="name" required placeholder=" " /><label for="name">Your name</label></div>
-          <div class="field"><input type="email" id="email" required placeholder=" " /><label for="email">Email address</label></div>
-          <div class="field"><input type="text" id="subject" placeholder=" " /><label for="subject">Subject</label></div>
-          <div class="field"><textarea id="message" rows="5" required placeholder=" "></textarea><label for="message">Your message</label></div>
-          <button type="submit" class="btn btn-primary">Send Message →</button>
-          <div class="form-status" id="status"></div>
-        </form>
-        <aside class="contact-info reveal">
-          <div class="card glass">
-            <h4>Email</h4>
-            <a href="mailto:emongianjay.ije@gmail.com">emongianjay.ije@gmail.com</a>
-          </div>
-          <div class="card glass">
-            <h4>Studio</h4>
-            <p>Xhieyan Printing Studio<br/>Surigao City, Philippines</p>
-          </div>
-          <div class="card glass socials-card">
-            <h4>Follow</h4>
-            <div class="row">
-              <a href="https://facebook.com" class="social glass" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-              </a>
-              <a href="https://instagram.com" class="social glass" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              </a>
-              <a href="mailto:emongianjay.ije@gmail.com" class="social glass" aria-label="Email">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              </a>
-            </div>
-          </div>
-        </aside>
+    <div class="exp-grid">
+      <div class="card reveal">
+        <div class="meta">Mar 2026 — May 2026</div>
+        <h3>IT Intern · Marketing</h3>
+        <p class="role">X-Meta Technologies Inc.</p>
+        <p style="margin-top:10px;">Drove marketing operations end-to-end — managing client databases in Excel, executing email blast campaigns, and designing promotional and hiring posters in Canva. Coordinated quotations with vendors and owned mall directory mapping with accurate backend updates.</p>
       </div>
-    </section>
+      <div class="card reveal">
+        <div class="meta">Dec 2024 — Present</div>
+        <h3>Founder &amp; Creative Lead</h3>
+        <p class="role">Xhieyan Printing Studio</p>
+        <p style="margin-top:10px;">A boutique print and design studio in Surigao City serving students, professionals, and small businesses with high-quality printing, photo prints, and custom graphic design — from posters and menus to full branding systems and promotional materials.</p>
+      </div>
+    </div>
 
-    <footer class="footer">
-      <p>© <span id="year"></span> Ian Jay Emong · Crafted with care in Surigao, PH</p>
-    </footer>
-  </main>
+    <h3 class="sub-head reveal">
+      <span class="icon-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </span>
+      Education
+    </h3>
+    <div class="edu-grid">
+      <div class="card reveal">
+        <span class="subtitle">Tertiary</span>
+        <h4>Bachelor of Science in Information Technology</h4>
+        <p>Northeastern Mindanao Colleges</p>
+        <p class="year">2022 — 2026</p>
+      </div>
+      <div class="card reveal">
+        <span class="subtitle">Senior High School</span>
+        <h4>TVL — ICT</h4>
+        <p>STI College Surigao</p>
+        <p class="year">2020 — 2022</p>
+      </div>
+    </div>
 
-  <script>
-    // Lightbox Image Gallery
-    const lightboxImages = [
-      'bboy.png', 'patrick.png', 'joefred.png', 'aira.png',
-      '2.png', '3.png', 'p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png',
-      'front.png', 'back.png', '',
-      'lg1.png', 'lg2.png', 'lg3.png', 'lg4.png', 'lg5.png', 'lg6.png'
-    ];
-    let currentImageIndex = 0;
+    <h3 class="sub-head reveal">
+      <span class="icon-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+      </span>
+      Expertise
+    </h3>
+    <div class="skills">
+      <div class="skill reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+        Graphic Design
+      </div>
+      <div class="skill reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 7.36H22l-6.19 4.5L18.2 21 12 16.5 5.8 21l2.39-7.14L2 9.36h7.61z"/></svg></div>
+        Branding
+      </div>
+      <div class="skill reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+        Layout Design
+      </div>
+      <div class="skill reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
+        Marketing Design
+      </div>
+      <div class="skill reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
+        Printing Services
+      </div>
+      <div class="skill reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div>
+        Canva Pro
+      </div>
+    </div>
+  </section>
 
-    function openLightbox(index) {
-      currentImageIndex = index;
-      const lightbox = document.getElementById('lightbox');
-      const img = document.getElementById('lb-img');
-      if (lightboxImages[index]) {
-        img.src = lightboxImages[index];
-        lightbox.style.display = 'flex';
-      }
-    }
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <header class="section-head reveal">
+      <span class="subtitle">My Work</span>
+      <h2 class="h2">Projects &amp; <em>Portfolio</em></h2>
+      <p class="body" style="margin-top:14px;">A selection of design and development work — from branding and printed posters to digital experiences.</p>
+    </header>
 
-    function closeLightbox(event) {
-      if (event) event.stopPropagation();
-      const lightbox = document.getElementById('lightbox');
-      lightbox.style.display = 'none';
-    }
+    <div class="projects-grid">
 
-    function changeLightbox(direction, event) {
-      event.stopPropagation();
-      currentImageIndex += direction;
-      if (currentImageIndex < 0) currentImageIndex = lightboxImages.length - 1;
-      if (currentImageIndex >= lightboxImages.length) currentImageIndex = 0;
-      openLightbox(currentImageIndex);
-    }
+      <div class="project-card reveal">
+        <div class="project-image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="project-content">
+          <h3>Personal Portfolio Website</h3>
+          <span class="badge">Web Development</span>
+          <p>A responsive portfolio website showcasing my skills, education, and projects — built with HTML, CSS, and JavaScript.</p>
+          <div class="project-tags">
+            <span class="project-tag">HTML</span>
+            <span class="project-tag">CSS</span>
+            <span class="project-tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
 
-    // Year
+      <div class="project-card reveal">
+        <div class="project-image" style="padding:0;">
+          <img src="bboy.png" alt="Birthday Poster - Aidrian" onclick="openLightbox(0)">
+        </div>
+        <div class="project-content">
+          <h3>Birthday Poster</h3>
+          <span class="badge">Graphic Design</span>
+          <p>Personalized birthday posters for friends — each design customized to their personality, combining creative layouts and eye-catching visuals.</p>
+          <div class="project-tags">
+            <span class="project-tag">Poster</span>
+            <span class="project-tag">Print</span>
+          </div>
+          <div class="thumbs">
+            <div class="thumb" onclick="openLightbox(0)"><img src="bboy.png" alt="Aidrian"></div>
+            <div class="thumb" onclick="openLightbox(1)"><img src="patrick.png" alt="Patrick"></div>
+            <div class="thumb" onclick="openLightbox(2)"><img src="joefred.png" alt="Joefred"></div>
+            <div class="thumb" onclick="openLightbox(3)"><img src="aira.png" alt="Aira"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-image" style="padding:0;">
+          <img src="2.png" alt="Invitation Card - Front" onclick="openLightbox(4)">
+        </div>
+        <div class="project-content">
+          <h3>Invitation Card Design</h3>
+          <span class="badge">Graphic Design</span>
+          <p>My very first official client project — a custom Christening &amp; 1st Birthday invitation, with playful layouts and soft blue tones.</p>
+          <div class="project-tags">
+            <span class="project-tag">Invitation</span>
+            <span class="project-tag">Print</span>
+          </div>
+          <div class="thumbs">
+            <div class="thumb" onclick="openLightbox(4)"><img src="2.png" alt="Front"></div>
+            <div class="thumb" onclick="openLightbox(5)"><img src="3.png" alt="Back"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-image" style="padding:0;">
+          <img src="p2.png" alt="Promoting Poster" onclick="openLightbox(7)">
+        </div>
+        <div class="project-content">
+          <h3>Promoting Poster</h3>
+          <span class="badge">Graphic Design</span>
+          <p>Self-created advertising posters promoting my printing services — countdowns, step guides, and clear service descriptions.</p>
+          <div class="project-tags">
+            <span class="project-tag">Advertising</span>
+            <span class="project-tag">Print</span>
+          </div>
+          <div class="thumbs">
+            <div class="thumb" onclick="openLightbox(6)"><img src="p1.png" alt="Promo 1"></div>
+            <div class="thumb" onclick="openLightbox(7)"><img src="p2.png" alt="Promo 2"></div>
+            <div class="thumb" onclick="openLightbox(8)"><img src="p3.png" alt="Promo 3"></div>
+            <div class="thumb" onclick="openLightbox(9)"><img src="p4.png" alt="Promo 4"></div>
+            <div class="thumb" onclick="openLightbox(10)"><img src="p5.png" alt="Promo 5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-image" style="padding:0;">
+          <img src="front.png" alt="K-Pop Inspired Design - Front" onclick="openLightbox(11)">
+        </div>
+        <div class="project-content">
+          <h3>Aesthetic K-Pop Design</h3>
+          <span class="badge">Graphic Design</span>
+          <p>A personal creative project — an aesthetic K-Pop inspired layout designed from scratch and printed as a PVC card.</p>
+          <div class="project-tags">
+            <span class="project-tag">K-Pop</span>
+            <span class="project-tag">PVC Card</span>
+          </div>
+          <div class="thumbs">
+            <div class="thumb" onclick="openLightbox(11)"><img src="front.png" alt="Front"></div>
+            <div class="thumb" onclick="openLightbox(12)"><img src="back.png" alt="Back"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-image" style="padding:0;">
+          <img src="lg4.png" alt="Logo - Sample 4" onclick="openLightbox(14)">
+        </div>
+        <div class="project-content">
+          <h3>Logos</h3>
+          <span class="badge">Brand Identity</span>
+          <p>Custom logo designs for my mini printing business — building brand identity through thoughtful typography and clean design.</p>
+          <div class="project-tags">
+            <span class="project-tag">Logo</span>
+            <span class="project-tag">Branding</span>
+          </div>
+          <div class="thumbs">
+            <div class="thumb" onclick="openLightbox(13)"><img src="lg1.png" alt="Logo 1"></div>
+            <div class="thumb" onclick="openLightbox(14)"><img src="lg2.png" alt="Logo 2"></div>
+            <div class="thumb" onclick="openLightbox(15)"><img src="lg3.png" alt="Logo 3"></div>
+            <div class="thumb" onclick="openLightbox(16)"><img src="lg4.png" alt="Logo 4"></div>
+            <div class="thumb" onclick="openLightbox(17)"><img src="lg5.png" alt="Logo 5"></div>
+            <div class="thumb" onclick="openLightbox(18)"><img src="lg6.png" alt="Logo 6"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="project-content">
+          <h3>Coming Soon</h3>
+          <span class="badge" style="background:linear-gradient(135deg, var(--accent), #FFB58A);">In Progress</span>
+          <p>More exciting projects are in development. Stay tuned for updates!</p>
+          <div class="project-tags">
+            <span class="project-tag">In Progress</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <button class="lb-btn lb-close" onclick="closeLightbox(event)" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="lb-btn lb-prev" onclick="changeLightbox(-1, event)" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="lb-btn lb-next" onclick="changeLightbox(1, event)" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lb-content" onclick="event.stopPropagation()">
+      <img id="lb-img" src="" alt="Preview">
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <header class="section-head reveal">
+      <span class="subtitle">Contact</span>
+      <h2 class="h2">Let's create <em>something bold</em></h2>
+      <p class="body" style="margin-top:14px;">Have a project, collaboration, or opportunity? Let's connect.</p>
+    </header>
+    <div class="contact-cards reveal">
+      <div class="card contact-card-item">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+          Email
+        </h4>
+        <a class="link" href="mailto:emongianjay.ije@gmail.com">emongianjay.ije@gmail.com</a>
+      </div>
+      <div class="card contact-card-item">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Studio
+        </h4>
+        <p>Xhieyan Printing Studio<br/>Surigao City, Philippines</p>
+      </div>
+      <div class="card contact-card-item">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+          Follow
+        </h4>
+        <div class="row">
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="social" data-brand="facebook" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="social" data-brand="instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+          <a href="mailto:emongianjay.ije@gmail.com" class="social" data-brand="email" aria-label="Email">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Ian Jay Emong · Crafted with care in Surigao, PH</p>
+  </footer>
+</main>
+
+<script>
+/* ============ Lightbox ============ */
+const lightboxImages = [
+  'bboy.png', 'patrick.png', 'joefred.png', 'aira.png',
+  '2.png', '3.png',
+  'p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png',
+  'front.png', 'back.png', '',
+  'lg1.png', 'lg2.png', 'lg3.png', 'lg4.png', 'lg5.png', 'lg6.png'
+];
+let currentImageIndex = 0;
+function openLightbox(index) {
+  currentImageIndex = index;
+  if (!lightboxImages[index]) return;
+  document.getElementById('lb-img').src = lightboxImages[index];
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLightbox(event) {
+  if (event) event.stopPropagation();
+  document.getElementById('lightbox').classList.remove('show');
+}
+function changeLightbox(direction, event) {
+  if (event) event.stopPropagation();
+  let next = currentImageIndex;
+  for (let i = 0; i < lightboxImages.length; i++) {
+    next += direction;
+    if (next < 0) next = lightboxImages.length - 1;
+    if (next >= lightboxImages.length) next = 0;
+    if (lightboxImages[next]) { openLightbox(next); return; }
+  }
+}
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('show')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') changeLightbox(-1);
+  if (e.key === 'ArrowRight') changeLightbox(1);
+});
+
+/* ============ Year ============ */
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Cursor glow
+/* ============ Cursor glow ============ */
 const glow = document.getElementById('cursorGlow');
 window.addEventListener('mousemove', (e) => {
   glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%,-50%)`;
 });
 
-// Reveal on scroll
+/* ============ Reveal on scroll ============ */
 const io = new IntersectionObserver((entries) => {
   entries.forEach((en, i) => {
     if (en.isIntersecting) {
@@ -858,7 +1084,7 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-// Active nav link
+/* ============ Active nav link ============ */
 const links = document.querySelectorAll('.nav-link');
 const sections = ['home','about','projects','contact'].map((id) => document.getElementById(id));
 const navIO = new IntersectionObserver((entries) => {
@@ -871,9 +1097,9 @@ const navIO = new IntersectionObserver((entries) => {
 }, { rootMargin: '-45% 0px -50% 0px' });
 sections.forEach((s) => s && navIO.observe(s));
 
-// Mobile menu
+/* ============ Mobile menu ============ */
 const menuBtn = document.getElementById('menuBtn');
-const navUl = document.querySelector('.nav ul');
+const navUl = document.getElementById('navLinks');
 menuBtn.addEventListener('click', () => {
   menuBtn.classList.toggle('open');
   navUl.classList.toggle('open');
@@ -885,31 +1111,35 @@ navUl.addEventListener('click', (e) => {
   }
 });
 
-// Form
-document.getElementById('contactForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const status = document.getElementById('status');
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const msg = document.getElementById('message').value.trim();
-  if (!name || !email || !msg) { status.textContent = 'Please fill in name, email, and message.'; status.style.color = '#ff8a8a'; return; }
-  // If a contact.php endpoint is present, post there. Otherwise fall back to mailto.
-  fetch('/contact.php', { method: 'POST', body: new FormData(e.target) })
-    .then(r => r.ok ? r.text() : Promise.reject())
-    .then(() => { status.style.color = '#5cc8ff'; status.textContent = 'Message sent — thanks!'; e.target.reset(); })
-    .catch(() => { window.location.href = `mailto:emongianjay.ije@gmail.com?subject=${encodeURIComponent('Portfolio inquiry from ' + name)}&body=${encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')')}`; });
-});
-
-// Magnetic buttons
+/* ============ Magnetic buttons ============ */
 document.querySelectorAll('.btn').forEach(btn => {
   btn.addEventListener('mousemove', (e) => {
     const r = btn.getBoundingClientRect();
-    const x = e.clientX - r.left - r.width/2;
-    const y = e.clientY - r.top - r.height/2;
-    btn.style.transform = `translate(${x*0.15}px, ${y*0.25}px)`;
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    btn.style.transform = `translate(${x*0.12}px, ${y*0.2}px)`;
   });
-  btn.addEventListener('mouseleave', () => btn.style.transform = '');
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
-  </script>
+
+/* ============ Dark mode ============ */
+const darkModeToggle = document.getElementById('darkModeToggle');
+const html = document.documentElement;
+const sunIcon = darkModeToggle.querySelector('.sun-icon');
+const moonIcon = darkModeToggle.querySelector('.moon-icon');
+function updateIcons() {
+  const isDark = html.classList.contains('dark');
+  sunIcon.style.display = isDark ? 'block' : 'none';
+  moonIcon.style.display = isDark ? 'none' : 'block';
+}
+if (localStorage.getItem('darkMode') === 'true') html.classList.add('dark');
+updateIcons();
+darkModeToggle.addEventListener('click', (e) => {
+  e.preventDefault(); e.stopPropagation();
+  html.classList.toggle('dark');
+  localStorage.setItem('darkMode', html.classList.contains('dark'));
+  updateIcons();
+});
+</script>
 </body>
 </html>
