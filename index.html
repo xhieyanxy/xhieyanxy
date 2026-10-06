@@ -1,1145 +1,1556 @@
 <!DOCTYPE html>
+<!--
+╔══════════════════════════════════════════════════════════════════════════╗
+║  IAN JAY EMONG — PORTFOLIO (single-file website)                         ║
+║                                                                          ║
+║  QUICK EDIT GUIDE — search (Ctrl/Cmd + F) for these labels:              ║
+║                                                                          ║
+║   [EDIT: SITE CONFIG]     → name, email, socials, resume, portrait,      ║
+║                             contact info, form settings                  ║
+║   [EDIT: PROJECTS]        → the "Works" cards (add / remove / reorder)   ║
+║   [EDIT: GALLERY]         → gallery categories + images per category     ║
+║   [EDIT: IMAGE LIBRARY]   → where the actual image files/data live       ║
+║   [EDIT: DESIGN TOKENS]   → colors, fonts, shadows (light + dark)        ║
+║   [EDIT: ABOUT]           → about text, facts, education, services       ║
+║   [EDIT: SEO]             → page title + search/social descriptions      ║
+║   [EDIT: ANIMATIONS]      → reveal / dialog motion settings              ║
+║   [EDIT: SPAM PROTECTION] → contact form anti-spam rules                 ║
+║                                                                          ║
+║  No build tools needed. Just open this file in a browser.                ║
+║  Never put API keys, passwords, or private tokens in this file —         ║
+║  everything here is visible to anyone who views the page source.        ║
+╚══════════════════════════════════════════════════════════════════════════╝
+-->
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ian Jay Emong — Graphic Designer & IT Professional</title>
-<meta name="description" content="Portfolio of Ian Jay Emong — graphic designer, business owner, and BSIT graduate based in Surigao City, Philippines." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   Design System — Product UI Styleguide
-   Tokens · Spacing · Radius · Elevation · Typography · Colors
-   ============================================================ */
-:root {
-  /* Color tokens — Light */
-  --background: #F4FBF1;
-  --surface: #FFFFFF;
-  --surface-2: #F7FCFA;
-  --foreground: #0F2E36;
-  --muted-foreground: #5C7B85;
-  --border: rgba(28, 79, 92, 0.10);
-  --border-strong: rgba(28, 79, 92, 0.18);
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
 
-  --primary: #1F8FAA;
-  --primary-hover: #1A7A92;
-  --primary-pressed: #155F73;
-  --primary-foreground: #FFFFFF;
-  --primary-glow: #62C4DA;
-  --primary-soft: rgba(31, 143, 170, 0.10);
-  --primary-soft-hover: rgba(31, 143, 170, 0.18);
+  <!-- ===================================================================
+       [EDIT: SEO] Page title and descriptions for Google / social shares
+       =================================================================== -->
+  <title>Ian Jay Emong — Graphic Designer &amp; IT Professional</title>
+  <meta name="description" content="Portfolio of Ian Jay Emong — graphic designer, business owner, and BSIT graduate based in Surigao City, Philippines.">
+  <meta property="og:title" content="Ian Jay Emong — Graphic Designer &amp; IT Professional">
+  <meta property="og:description" content="Selected graphic design, personal work, and internship projects by Ian Jay Emong.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
 
-  --secondary: #FFDE96;
-  --secondary-foreground: #4A2E00;
-  --accent: #FA855A;
-  --accent-foreground: #FFFFFF;
-  --success: #2BB673;
-  --warning: #E0A82E;
-  --destructive: #D04040;
+  <!-- ===================================================================
+       SPAM PROTECTION HOOK (optional, add later)
+       To add Cloudflare Turnstile: uncomment the line below, then see
+       the "TURNSTILE" comment inside the contact form + JS submit code.
+       =================================================================== -->
+  <!-- <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
 
-  /* Glass */
-  --glass-bg: rgba(255, 255, 255, 0.55);
-  --glass-bg-strong: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.6);
-  --glass-highlight: rgba(255, 255, 255, 0.85);
-  --glass-tint: rgba(98, 196, 218, 0.08);
+  <style>
+    /* =====================================================================
+       CSS — TABLE OF CONTENTS
+       1. Design tokens (colors, fonts) .......... [EDIT: DESIGN TOKENS]
+       2. Base / reset
+       3. Layout helpers + typography
+       4. Buttons + icons
+       5. Navigation
+       6. Hero
+       7. About, education, expertise
+       8. Works / project cards
+       9. Gallery + filters
+      10. Contact + form
+      11. Footer
+      12. Dialogs (gallery, notice, lightbox)
+      13. Animations ............................. [EDIT: ANIMATIONS]
+      14. Responsive breakpoints
+      15. Reduced motion
+       ===================================================================== */
 
-  /* Elevation */
-  --elev-0: 0 0 0 1px rgba(15, 46, 54, 0.04);
-  --elev-1: 0 1px 2px rgba(15, 46, 54, 0.06), 0 1px 3px rgba(15, 46, 54, 0.04);
-  --elev-2: 0 4px 12px rgba(15, 46, 54, 0.08), 0 2px 4px rgba(15, 46, 54, 0.04);
-  --elev-3: 0 18px 40px -12px rgba(15, 46, 54, 0.18), 0 8px 16px -8px rgba(15, 46, 54, 0.10);
-  --elev-glow: 0 20px 60px -15px rgba(31, 143, 170, 0.45);
+    /* ---------------------------------------------------------------------
+       1. DESIGN TOKENS  [EDIT: DESIGN TOKENS]
+       Change colors here and the whole site updates.
+       --------------------------------------------------------------------- */
+    :root {
+      color-scheme: light;
+      --bg:           #f7f7f5;
+      --surface:      #ffffff;
+      --surface-alt:  #efefed;
+      --ink:          #171717;              /* main text + primary buttons */
+      --muted:        #646464;              /* secondary text */
+      --line:         #dcdcd9;              /* borders */
+      --line-strong:  #a5a5a1;
+      --inverse:      #ffffff;              /* text on dark buttons */
+      --glass:        rgba(255,255,255,.82);/* blurred nav background */
+      --available:    oklch(0.54 0.16 151); /* green "available" dot */
+      --accent:       oklch(0.49 0.12 187); /* teal icon accent */
+      --danger:       oklch(0.55 0.2 27);   /* form error color */
+      --gradient-a:   var(--surface);
+      --gradient-b:   var(--surface-alt);
+      --page-gradient: none;
+      --shadow:       0 12px 38px rgba(0,0,0,.055);
+      --shadow-hover: 0 18px 46px oklch(0 0 0 / .10);
+      --backdrop:     oklch(0.1 0.01 230 / .72);
+      --preview-bg:   oklch(0.12 0.01 230 / .97);
+      --preview-ink:  oklch(0.98 0 0);
+      --preview-line: oklch(1 0 0 / .38);
+      --preview-control: oklch(1 0 0 / .12);
+      --preview-hover:   oklch(1 0 0 / .28);
+      --font:   Arial, Helvetica, sans-serif;  /* site font */
+      --radius: 6px;
+      --ease:   cubic-bezier(.2,.65,.3,1);
+    }
 
-  /* Radius */
-  --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --radius-full: 999px;
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg:           #111214;
+      --surface:      #1b1c1e;
+      --surface-alt:  #252629;
+      --ink:          #f4f4f2;
+      --muted:        #b4b4b3;
+      --line:         #38393b;
+      --line-strong:  #6b6c70;
+      --inverse:      #111214;
+      --glass:        rgba(27,28,30,.85);
+      --available:    oklch(0.78 0.17 151);
+      --accent:       oklch(0.79 0.10 187);
+      --danger:       oklch(0.72 0.17 27);
+      --gradient-a:   oklch(0.24 0.03 190);
+      --gradient-b:   oklch(0.22 0.025 285);
+      --page-gradient: linear-gradient(135deg, oklch(0.17 0.017 190), var(--bg) 46%, oklch(0.18 0.016 290));
+      --shadow:       0 15px 44px rgba(0,0,0,.22);
+    }
 
-  /* Spacing scale */
-  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
-  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
-  --s-12: 48px; --s-16: 64px; --s-20: 80px;
+    /* ---------------------------------------------------------------------
+       2. BASE / RESET
+       --------------------------------------------------------------------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 94px; }
+    body {
+      margin: 0;
+      background: var(--bg) var(--page-gradient) fixed;
+      color: var(--ink);
+      font: 15px/1.65 var(--font);
+      -webkit-font-smoothing: antialiased;
+    }
+    body.no-scroll { overflow: hidden; }
+    button, a, input, textarea { font: inherit; }
+    button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    svg { display: block; width: 18px; height: 18px; }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    [hidden] { display: none !important; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap;
+    }
 
-  /* Type */
-  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-}
+    /* ---------------------------------------------------------------------
+       3. LAYOUT HELPERS + TYPOGRAPHY
+       --------------------------------------------------------------------- */
+    .wrap { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+    .section { padding: 100px 0; border-top: 1px solid var(--line); }
+    .section-head { margin-bottom: 36px; }
+    .section-head .lead { margin-bottom: 0; }
 
-/* Dark mode */
-html.dark {
-  --background: #0B1117;
-  --surface: #131B23;
-  --surface-2: #182129;
-  --foreground: #E6EDF3;
-  --muted-foreground: #8FA3AF;
-  --border: rgba(230, 237, 243, 0.08);
-  --border-strong: rgba(230, 237, 243, 0.16);
+    h1, h2, h3, h4, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.12; }
+    h1 { font-size: 64px; font-weight: 700; margin: 20px 0 24px; max-width: 760px; }
+    h2 { font-size: 42px; margin: 11px 0 18px; }
+    h3 { font-size: 21px; margin-bottom: 10px; }
 
-  --primary: #39C5E0;
-  --primary-hover: #5AD2E8;
-  --primary-pressed: #79DEEF;
-  --primary-foreground: #0B1117;
-  --primary-glow: #00A8CC;
-  --primary-soft: rgba(57, 197, 224, 0.12);
-  --primary-soft-hover: rgba(57, 197, 224, 0.20);
+    .eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .muted, .lead { color: var(--muted); }
+    .lead { font-size: 17px; max-width: 650px; }
+    .rule { width: 44px; height: 2px; background: var(--ink); margin: 0 0 20px; }
 
-  --secondary: #2A2218;
-  --secondary-foreground: #FFDE96;
-  --accent: #FF7B39;
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px; color: var(--muted);
+      border: 1px solid var(--line); border-radius: 4px; padding: 4px 8px;
+    }
 
-  --glass-bg: rgba(19, 27, 35, 0.55);
-  --glass-bg-strong: rgba(19, 27, 35, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-highlight: rgba(255, 255, 255, 0.10);
-  --glass-tint: rgba(57, 197, 224, 0.08);
+    /* ---------------------------------------------------------------------
+       4. BUTTONS + ICONS
+       --------------------------------------------------------------------- */
+    .btn {
+      min-height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      border: 1px solid var(--ink); background: var(--ink); color: var(--inverse);
+      padding: 9px 17px; border-radius: var(--radius);
+      font-size: 13px; font-weight: 700; line-height: 1.2;
+      transition: transform .2s, background .2s, color .2s, border-color .2s;
+    }
+    .btn:hover { transform: translateY(-2px); background: var(--surface-alt); color: var(--ink); }
+    .btn:disabled { opacity: .6; cursor: progress; transform: none; }
+    .btn-outline { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+    .btn-outline:hover { border-color: var(--ink); }
 
-  --elev-0: 0 0 0 1px rgba(255, 255, 255, 0.04);
-  --elev-1: 0 1px 2px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.3);
-  --elev-2: 0 4px 12px rgba(0,0,0,0.45), 0 2px 4px rgba(0,0,0,0.25);
-  --elev-3: 0 18px 40px -12px rgba(0,0,0,0.6), 0 8px 16px -8px rgba(0,0,0,0.4);
-  --elev-glow: 0 20px 60px -15px rgba(57, 197, 224, 0.45);
-}
+    .icon-btn {
+      width: 42px; height: 42px; display: grid; place-items: center; flex: none;
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      color: var(--ink); transition: border-color .2s, background .2s;
+    }
+    .icon-btn:hover { border-color: var(--ink); background: var(--surface-alt); }
 
-/* ============ Reset ============ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-html, body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  transition: background 0.4s ease, color 0.4s ease;
-}
-a { color: inherit; text-decoration: none; }
-button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-img, svg { max-width: 100%; display: block; }
-ul { list-style: none; }
+    .text-link {
+      display: inline-flex; align-items: center; gap: 8px; width: max-content;
+      margin-top: 22px; padding: 0 0 3px;
+      background: transparent; color: var(--ink); border: 0; border-bottom: 1px solid var(--ink);
+      font-size: 13px; font-weight: 700; text-align: left;
+    }
 
-/* ============ Typography ============ */
-h1, h2, h3, h4, h5 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  color: var(--foreground);
-}
-.h1 { font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; }
-.h2 { font-size: clamp(1.9rem, 3.5vw, 2.75rem); }
-.h3 { font-size: 1.35rem; }
-.subtitle { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); }
-.body { font-size: 1rem; color: var(--muted-foreground); }
-.body-sm { font-size: 0.875rem; color: var(--muted-foreground); }
-.caption { font-size: 0.75rem; color: var(--muted-foreground); }
-em { font-style: normal; background: linear-gradient(135deg, var(--primary), var(--primary-glow)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-strong { color: var(--foreground); font-weight: 700; }
+    /* ---------------------------------------------------------------------
+       5. NAVIGATION
+       --------------------------------------------------------------------- */
+    .nav-shell { position: sticky; top: 0; z-index: 30; padding: 12px 0; pointer-events: none; }
+    .nav {
+      position: relative; height: 58px; padding: 0 14px 0 22px;
+      display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 14px;
+      background: var(--glass); backdrop-filter: blur(18px);
+      border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow);
+      pointer-events: auto;
+    }
+    .logo { font-size: 20px; font-weight: 800; line-height: 1; }
+    .nav-links { display: flex; align-items: center; gap: 3px; list-style: none; margin: 0; padding: 0; }
+    .nav-link {
+      display: block; padding: 8px 12px; border-radius: 5px;
+      color: var(--muted); font-size: 13px; font-weight: 700;
+      transition: color .2s, background .2s;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--ink); background: var(--surface-alt); }
+    .nav-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+    .nav-cta { min-height: 40px; padding: 8px 13px; font-size: 12px; }
+    .menu-btn { display: none; }
 
-/* ============ Animated Background ============ */
-.bg { position: fixed; inset: 0; z-index: -2; overflow: hidden; }
-.blob { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.55; pointer-events: none; }
-.b1 { width: 520px; height: 520px; background: rgba(98, 196, 218, 0.55); top: -160px; left: -120px; animation: float1 18s ease-in-out infinite; }
-.b2 { width: 600px; height: 600px; background: rgba(255, 222, 150, 0.45); bottom: -220px; right: -160px; animation: float2 22s ease-in-out infinite; }
-.b3 { width: 420px; height: 420px; background: rgba(250, 133, 90, 0.25); top: 45%; left: 40%; animation: float3 26s ease-in-out infinite; }
-.dark .b1 { background: rgba(57, 197, 224, 0.30); opacity: 0.5; }
-.dark .b2 { background: rgba(255, 123, 57, 0.20); opacity: 0.45; }
-.dark .b3 { background: rgba(57, 197, 224, 0.16); opacity: 0.4; }
-@keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(80px,60px)} }
-@keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-100px,-80px)} }
-@keyframes float3 { 0%,100%{transform:translate(-50%,-50%)} 50%{transform:translate(-30%,-70%)} }
-.grid-bg {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(28,79,92,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(28,79,92,0.06) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse at center, black 25%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 25%, transparent 75%);
-}
-.dark .grid-bg {
-  background-image:
-    linear-gradient(rgba(57,197,224,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(57,197,224,0.05) 1px, transparent 1px);
-}
-.cursor-glow {
-  position: fixed; width: 380px; height: 380px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(31,143,170,0.18), transparent 65%);
-  pointer-events: none; transform: translate(-50%,-50%);
-  transition: transform 0.18s ease-out; z-index: -1;
-}
-.dark .cursor-glow { background: radial-gradient(circle, rgba(57,197,224,0.16), transparent 65%); }
+    /* ---------------------------------------------------------------------
+       6. HERO
+       --------------------------------------------------------------------- */
+    .hero { padding: 92px 0 108px; min-height: 610px; }
+    .hero-grid {
+      display: grid; grid-template-columns: minmax(0,1.2fr) minmax(280px,.8fr);
+      align-items: center; gap: 7vw;
+    }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 12px; font-weight: 700; color: var(--available);
+    }
+    .hero-kicker::before {
+      content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--available);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    .hero .lead { max-width: 590px; text-wrap: pretty; }
+    .hero .lead strong { color: var(--ink); }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 42px; }
+    .hero-foot {
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+    }
+    .socials { display: flex; gap: 7px; }
 
-/* ============ Glassmorphism (enhanced) ============ */
-.glass {
-  position: relative;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  box-shadow:
-    var(--elev-2),
-    inset 0 1px 0 var(--glass-highlight),
-    inset 0 -1px 0 rgba(0,0,0,0.04);
-  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.glass::before {
-  content: ""; position: absolute; inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,0.35) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.10) 100%);
-  pointer-events: none; opacity: 0.7;
-}
-.dark .glass::before {
-  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 30%, transparent 70%, rgba(57,197,224,0.05) 100%);
-}
-.glass-strong {
-  background: var(--glass-bg-strong);
-  backdrop-filter: blur(36px) saturate(200%);
-  -webkit-backdrop-filter: blur(36px) saturate(200%);
-}
+    .portrait-wrap { position: relative; max-width: 375px; width: 100%; margin-left: auto; }
+    .portrait {
+      aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+      border: 9px solid var(--surface); outline: 1px solid var(--line);
+      box-shadow: var(--shadow); background: var(--surface-alt);
+      display: grid; place-items: center;
+    }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; }
+    .portrait-placeholder {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; height: 100%;
+      background: linear-gradient(145deg, var(--gradient-b), var(--gradient-a));
+    }
+    .portrait-placeholder strong { font-size: 112px; line-height: 1; }
+    .portrait-placeholder small { color: var(--muted); font-size: 10px; letter-spacing: .17em; text-transform: uppercase; }
+    .portrait-note {
+      position: absolute; bottom: -8px; right: -12px; padding: 11px 15px;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--glass); backdrop-filter: blur(14px); box-shadow: var(--shadow);
+      font-size: 12px; font-weight: 700;
+    }
+    .portrait-note .note-sub { display: block; color: var(--muted); font-size: 11px; font-weight: 400; }
 
-/* ============ Layout ============ */
-main { display: block; }
-.section { max-width: 1180px; margin: 0 auto; padding: 110px 24px; }
-.section-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
-.section-head .subtitle { display: inline-block; margin-bottom: 14px; }
-.section-head h2 { margin-bottom: 14px; }
-.section-head .body { margin: 0 auto; }
+    /* ---------------------------------------------------------------------
+       7. ABOUT, EDUCATION, EXPERTISE
+       --------------------------------------------------------------------- */
+    .about-grid { display: grid; grid-template-columns: 1.4fr .9fr; gap: 30px; }
+    .about-copy { max-width: 670px; }
+    .about-copy p { color: var(--muted); font-size: 16px; }
+    .facts { display: grid; border-top: 1px solid var(--line); }
+    .fact {
+      display: grid; grid-template-columns: 58px 1fr; gap: 14px; align-items: center;
+      padding: 16px 0; border-bottom: 1px solid var(--line);
+    }
+    .fact-mark { font-size: 25px; font-weight: 800; }
+    .fact strong { display: block; font-size: 14px; }
+    .fact span { display: block; color: var(--muted); font-size: 12px; }
 
-/* ============ Navigation ============ */
-.nav {
-  position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 14px;
-  padding: 10px 12px 10px 22px; border-radius: var(--radius-full);
-  z-index: 100; width: min(960px, calc(100% - 32px));
-  justify-content: space-between;
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  box-shadow: var(--elev-2), inset 0 1px 0 var(--glass-highlight);
-}
-.brand { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; }
-.brand span { color: var(--primary); }
-.nav-links { display: flex; gap: 4px; }
-.nav-link {
-  font-size: 0.8125rem; font-weight: 500;
-  padding: 9px 16px; border-radius: var(--radius-full);
-  color: var(--muted-foreground);
-  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.nav-link:hover { color: var(--primary); background: var(--primary-soft); }
-.nav-link.active { color: var(--primary); background: var(--primary-soft-hover); }
-.nav-actions { display: flex; align-items: center; gap: 8px; }
+    .subhead { font-size: 23px; margin: 64px 0 20px; }
+    .edu-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .edu { padding: 23px 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .edu h4 { font-size: 16px; line-height: 1.4; margin: 8px 0 3px; }
+    .edu p { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    .edu time { font-size: 12px; font-weight: 700; }
 
-/* ============ Buttons (Primary/Secondary/Text · Normal/Hover/Pressed) ============ */
-.btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 22px; border-radius: var(--radius-full);
-  font-weight: 600; font-size: 0.875rem; line-height: 1;
-  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
-  position: relative; isolation: isolate;
-  white-space: nowrap;
-}
-.btn svg { width: 16px; height: 16px; }
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  color: var(--primary-foreground);
-  box-shadow: var(--elev-2), 0 8px 24px -6px var(--primary-soft-hover);
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: var(--elev-3), var(--elev-glow); }
-.btn-primary:active { transform: translateY(0); box-shadow: var(--elev-1); }
-.btn-secondary {
-  background: var(--glass-bg);
-  border: 1px solid var(--border-strong);
-  color: var(--foreground);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  box-shadow: var(--elev-1);
-}
-.btn-secondary:hover { border-color: var(--primary); background: var(--glass-bg-strong); transform: translateY(-2px); box-shadow: var(--elev-2); }
-.btn-secondary:active { transform: translateY(0); }
-.btn-icon {
-  width: 42px; height: 42px; padding: 0; border-radius: 12px;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: var(--primary-soft);
-  border: 1px solid var(--border);
-  color: var(--primary);
-  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.btn-icon:hover { background: var(--primary-soft-hover); transform: translateY(-2px); box-shadow: var(--elev-2); }
-.btn-icon svg { width: 18px; height: 18px; }
-.nav-cta { padding: 10px 18px; font-size: 0.8125rem; }
+    .expertise { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .exp { border-top: 1px solid var(--ink); padding-top: 20px; }
+    .exp h4 { font-size: 17px; margin: 0 0 8px; }
+    .exp p { color: var(--muted); font-size: 14px; min-height: 68px; }
+    .expertise-icon { display: block; margin-bottom: 18px; color: var(--accent); }
+    .expertise-icon svg { width: 28px; height: 28px; }
 
-/* Mobile menu */
-.menu-btn {
-  display: none; width: 40px; height: 40px; border-radius: 12px;
-  background: var(--primary-soft); position: relative;
-}
-.menu-btn span {
-  position: absolute; left: 11px; right: 11px; height: 2px;
-  background: var(--foreground); border-radius: 2px; transition: 0.3s;
-}
-.menu-btn span:nth-child(1) { top: 14px; }
-.menu-btn span:nth-child(2) { bottom: 14px; }
-.menu-btn.open span:nth-child(1) { top: 19px; transform: rotate(45deg); }
-.menu-btn.open span:nth-child(2) { bottom: 19px; transform: rotate(-45deg); }
+    /* ---------------------------------------------------------------------
+       8. WORKS / PROJECT CARDS  (cards are generated from PROJECTS in JS)
+       --------------------------------------------------------------------- */
+    .works-layout { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+    .work-card {
+      display: flex; flex-direction: column; min-width: 0; overflow: hidden;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 7px; box-shadow: var(--shadow);
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+    html[data-theme="dark"] .work-card { background: linear-gradient(155deg, var(--surface), var(--bg)); }
+    .work-card:hover { transform: translateY(-3px); border-color: var(--line-strong); box-shadow: var(--shadow-hover); }
 
-/* ============ Chips ============ */
-.chip {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 7px 14px; border-radius: var(--radius-full);
-  font-size: 0.78rem; font-weight: 500;
-  background: var(--primary-soft);
-  border: 1px solid var(--border);
-  color: var(--foreground);
-}
-.chip .dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--success); box-shadow: 0 0 10px var(--success);
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+    .work-preview {
+      position: relative; width: 100%; aspect-ratio: 16/9; padding: 0; overflow: hidden;
+      display: grid; place-items: center;
+      background: var(--surface-alt); color: var(--ink);
+      border: 0; border-bottom: 1px solid var(--line);
+    }
+    .work-preview img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+      transition: transform .5s var(--ease);
+    }
+    .work-card:hover .work-preview img { transform: scale(1.03); }
 
-/* ============ Hero ============ */
-.hero { min-height: 100vh; display: flex; align-items: center; padding: 130px 24px 80px; max-width: 1180px; margin: 0 auto; }
-.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; width: 100%; }
-.hero-text h1 { margin-top: 22px; }
-.hero-text .body { margin-top: 22px; max-width: 520px; font-size: 1.05rem; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    /* Mini "browser window" preview (used when a project has preview: "browser") */
+    .browser-preview {
+      width: 86%; height: 75%; overflow: hidden; text-align: left;
+      border: 1px solid var(--line-strong); border-radius: 5px 5px 0 0;
+      background: var(--bg); box-shadow: var(--shadow);
+    }
+    .browser-bar {
+      height: 24px; display: flex; gap: 4px; align-items: center; padding: 0 10px;
+      border-bottom: 1px solid var(--line); background: var(--surface);
+    }
+    .browser-bar i { width: 5px; height: 5px; background: var(--line-strong); border-radius: 50%; }
+    .browser-inner { padding: 20px; display: grid; grid-template-columns: 1fr 32%; gap: 12px; align-items: center; }
+    .browser-inner strong { font-size: 18px; line-height: 1.1; }
+    .browser-inner small { display: block; color: var(--muted); margin-top: 8px; }
+    .browser-circle { aspect-ratio: 1; border-radius: 50%; background: var(--surface-alt); border: 1px solid var(--line); }
 
-.socials { display: flex; align-items: center; gap: 12px; margin-top: 38px; flex-wrap: wrap; }
-.socials .label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-foreground); font-weight: 600; }
-.socials .bar { width: 40px; height: 1px; background: var(--border-strong); }
-.social {
-  width: 42px; height: 42px; border-radius: 12px;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: var(--glass-bg);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  color: var(--foreground);
-  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-  box-shadow: var(--elev-1);
-}
-.social svg { width: 18px; height: 18px; }
-.social:hover { transform: translateY(-3px) scale(1.05); box-shadow: var(--elev-2); border-color: var(--primary); }
-.social[data-brand="facebook"]:hover { color: #1877F2; }
-.social[data-brand="instagram"]:hover { color: #E4405F; }
-.social[data-brand="email"]:hover { color: #EA4335; }
-.social[data-brand="linkedin"]:hover { color: #0A66C2; }
+    /* "Coming soon" preview (used when a project has preview: "coming-soon") */
+    .coming-preview { background: linear-gradient(135deg, var(--gradient-a), var(--gradient-b)); }
+    .coming-preview > div { display: grid; justify-items: center; gap: 14px; color: var(--accent); }
+    .coming-preview svg { width: 44px; height: 44px; }
+    .coming-preview span { font-size: 12px; }
+    .coming-status { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); margin-top: 22px; }
+    .coming-status i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-in-out infinite; }
 
-/* ============ Hero portrait ============ */
-.hero-portrait { position: relative; display: flex; justify-content: center; }
-.portrait-frame {
-  width: min(380px, 88%); aspect-ratio: 3/4; border-radius: 30px; padding: 10px;
-  position: relative; z-index: 2;
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
-  box-shadow: var(--elev-3), inset 0 1px 0 var(--glass-highlight);
-}
-.portrait-glow {
-  position: absolute; inset: -28px; border-radius: 50px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  filter: blur(60px); opacity: 0.28; z-index: 1;
-  animation: glowPulse 6s ease-in-out infinite;
-}
-@keyframes glowPulse { 0%,100% { opacity: 0.22; } 50% { opacity: 0.38; } }
-.portrait-inner {
-  width: 100%; height: 100%; border-radius: 24px; overflow: hidden;
-  background: linear-gradient(135deg, #FFDE96 0%, #FFEFCC 100%);
-  position: relative;
-}
-.dark .portrait-inner { background: linear-gradient(135deg, #0d1f30 0%, #152540 100%); }
-.portrait-inner img { width: 100%; height: 100%; object-fit: cover; object-position: top; animation: floatY 6s ease-in-out infinite; }
-@keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .work-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+    .work-body .eyebrow { margin-bottom: 10px; }
+    .work-body h3 { font-size: 20px; line-height: 1.3; margin-bottom: 10px; }
+    .work-body p { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+    .work-body .tags { margin-top: auto; }
 
-.float-card {
-  position: absolute; padding: 12px 16px; border-radius: 14px; font-size: 0.78rem;
-  z-index: 3;
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
-  color: var(--foreground);
-  box-shadow: var(--elev-3), inset 0 1px 0 var(--glass-highlight);
-  display: flex; align-items: center; gap: 8px;
-}
-.fc1 { left: -16px; top: 40px; animation: floatY 5s ease-in-out infinite; }
-.fc1 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 10px var(--success); }
-.fc2 { right: -10px; bottom: 100px; animation: floatY 7s ease-in-out infinite reverse; flex-direction: column; align-items: flex-start; gap: 2px; }
-.fc2 strong { font-size: 0.82rem; }
-.fc2 span { color: var(--muted-foreground); font-size: 0.72rem; }
-.fc3 {
-  left: 30px; bottom: -14px; padding: 8px 16px; border-radius: var(--radius-full);
-  color: var(--primary); font-weight: 600; animation: wobble 8s ease-in-out infinite;
-  background: var(--primary-soft); border: 1px solid var(--border-strong);
-}
-@keyframes wobble { 0%,100% { transform: rotate(0); } 25% { transform: rotate(3deg); } 75% { transform: rotate(-3deg); } }
+    /* ---------------------------------------------------------------------
+       9. GALLERY + FILTERS  (generated from GALLERY in JS)
+       --------------------------------------------------------------------- */
+    .sample-header { margin-bottom: 24px; padding-right: 18px; }
+    .sample-header h3 { font-size: 27px; margin: 8px 0; }
+    .sample-header p { max-width: 560px; color: var(--muted); font-size: 14px; margin: 0; }
 
-/* ============ Cards ============ */
-.card {
-  padding: 28px;
-  border-radius: var(--radius-lg);
-  position: relative;
-  background: var(--glass-bg);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  box-shadow: var(--elev-1), inset 0 1px 0 var(--glass-highlight);
-  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-  overflow: hidden;
-}
-.card::before {
-  content: ""; position: absolute; inset: 0; border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 35%, transparent 65%, var(--glass-tint) 100%);
-  pointer-events: none; opacity: 0.6;
-}
-.dark .card::before {
-  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 35%, transparent 65%, var(--glass-tint) 100%);
-}
-.card > * { position: relative; z-index: 1; }
-.card:hover {
-  transform: translateY(-3px);
-  border-color: var(--primary-soft-hover);
-  box-shadow: var(--elev-3);
-}
-.card-big { padding: 36px; }
-.card .card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-.card h3 { margin-bottom: 4px; }
-.card h4 { font-size: 1.05rem; margin: 8px 0 4px; }
-.card p { color: var(--muted-foreground); line-height: 1.65; }
-.card .meta {
-  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--muted-foreground); margin-bottom: 12px; font-weight: 600;
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.card .meta::before { content: ""; width: 16px; height: 1.5px; background: var(--primary); border-radius: 2px; }
-.card .role { color: var(--primary); font-weight: 600; margin-top: 4px; font-size: 0.95rem; }
-.card .year { margin-top: 14px; font-weight: 600; color: var(--accent); font-size: 0.9rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
+    .filter {
+      min-height: 42px; padding: 8px 12px;
+      background: transparent; border: 1px solid var(--line); border-radius: 5px;
+      color: var(--muted); font-size: 12px; font-weight: 700;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .filter:hover { border-color: var(--ink); color: var(--ink); }
+    .filter.active { background: var(--ink); color: var(--inverse); border-color: var(--ink); }
+    .filter .count { opacity: .6; font-weight: 400; margin-left: 4px; }
 
-.icon-box {
-  width: 44px; height: 44px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; flex-shrink: 0;
-  box-shadow: var(--elev-2), inset 0 1px 0 rgba(255,255,255,0.3);
-}
-.icon-box svg { width: 22px; height: 22px; stroke-width: 2; }
+    .gallery { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .gallery-item {
+      padding: 0; overflow: hidden; text-align: left;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--surface); color: var(--ink);
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    .gallery-item:hover { transform: translateY(-3px); border-color: var(--line-strong); box-shadow: var(--shadow); }
+    .gallery-media { position: relative; display: grid; place-items: center; aspect-ratio: 4/3; background: var(--surface-alt); overflow: hidden; }
+    .gallery-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+    .gallery-caption { display: block; padding: 11px 12px; min-height: 72px; }
+    .gallery-caption strong { display: block; font-size: 12px; line-height: 1.3; }
+    .gallery-caption small { display: block; font-size: 10px; color: var(--muted); margin-top: 4px; }
+    .empty { padding: 28px 0; color: var(--muted); font-size: 14px; }
 
-/* ============ About ============ */
-.about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 22px; }
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.stat {
-  padding: 22px; border-radius: var(--radius-md);
-  background: var(--glass-bg);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  box-shadow: var(--elev-1), inset 0 1px 0 var(--glass-highlight);
-  transition: all 0.25s ease;
-}
-.stat:hover { transform: translateY(-2px); border-color: var(--primary-soft-hover); box-shadow: var(--elev-2); }
-.stat .num {
-  font-size: 1.85rem; font-weight: 700; font-family: var(--font-display);
-  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  letter-spacing: -0.02em;
-}
-.stat .num-label { font-size: 0.78rem; color: var(--muted-foreground); margin-top: 4px; font-weight: 500; }
+    /* ---------------------------------------------------------------------
+      10. CONTACT + FORM
+       --------------------------------------------------------------------- */
+    .contact-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+    .contact-list { display: grid; gap: 22px; }
+    .contact-item { border-top: 1px solid var(--ink); padding-top: 18px; min-width: 0; }
+    .contact-item h3 { font-size: 14px; margin-bottom: 8px; }
+    .contact-item p, .contact-item a:not(.btn) { color: var(--muted); font-size: 14px; overflow-wrap: anywhere; margin: 0; }
+    .contact-item a:not(.btn):hover { color: var(--ink); }
 
-.exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 64px; }
-.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .contact-form {
+      display: grid; gap: 16px; padding: 26px;
+      border: 1px solid var(--line); border-radius: 8px; background: var(--surface); box-shadow: var(--shadow);
+    }
+    .field { display: grid; gap: 6px; }
+    .field label { font-size: 12px; font-weight: 700; }
+    .field input, .field textarea {
+      width: 100%; padding: 11px 13px; color: var(--ink);
+      background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+      transition: border-color .2s;
+    }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--ink); }
+    .field textarea { min-height: 140px; resize: vertical; }
+    .field [aria-invalid="true"] { border-color: var(--danger); }
+    .field-error { color: var(--danger); font-size: 12px; min-height: 0; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-note { font-size: 12px; color: var(--muted); margin: 0; }
+    .form-status { font-size: 13px; margin: 0; }
+    .form-status.error { color: var(--danger); }
+    .form-status.success { color: var(--available); }
+    /* Honeypot: hidden from people, visible to many bots. Do not remove. */
+    .hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 
-.sub-head {
-  font-size: 1.4rem; margin: 70px 0 24px;
-  display: flex; align-items: center; gap: 12px;
-  font-family: var(--font-display); font-weight: 700;
-}
-.sub-head .icon-pill {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--primary-soft); color: var(--primary);
-  display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--border);
-}
-.sub-head .icon-pill svg { width: 18px; height: 18px; }
+    /* ---------------------------------------------------------------------
+      11. FOOTER
+       --------------------------------------------------------------------- */
+    footer { border-top: 1px solid var(--line); padding: 25px 0; color: var(--muted); font-size: 12px; }
 
-/* ============ Skills ============ */
-.skills { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
-.skill {
-  padding: 22px 12px; border-radius: var(--radius-md);
-  text-align: center; font-size: 0.82rem; font-weight: 600;
-  background: var(--glass-bg);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  box-shadow: var(--elev-1), inset 0 1px 0 var(--glass-highlight);
-  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-  color: var(--foreground);
-}
-.skill:hover {
-  transform: translateY(-6px);
-  border-color: var(--primary-soft-hover);
-  box-shadow: var(--elev-3);
-}
-.skill .ico {
-  width: 44px; height: 44px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 12px; color: #fff;
-  box-shadow: var(--elev-1), inset 0 1px 0 rgba(255,255,255,0.3);
-}
-.skill .ico svg { width: 22px; height: 22px; }
+    /* ---------------------------------------------------------------------
+      12. DIALOGS (gallery, notice, lightbox)
+       --------------------------------------------------------------------- */
+    dialog {
+      color: var(--ink); background: var(--surface);
+      border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow);
+    }
+    dialog::backdrop { background: var(--backdrop); backdrop-filter: blur(8px); }
+    .dialog-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+    .dialog-top h3 { margin: 0; line-height: 1.4; }
 
-/* ============ Projects ============ */
-.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.project-card {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  display: flex; flex-direction: column;
-  background: var(--glass-bg);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  box-shadow: var(--elev-1), inset 0 1px 0 var(--glass-highlight);
-  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.project-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--primary-soft-hover);
-  box-shadow: var(--elev-3);
-}
-.project-image {
-  width: 100%; height: 200px;
-  background: linear-gradient(135deg, var(--primary-soft), rgba(255,222,150,0.4));
-  display: flex; align-items: center; justify-content: center;
-  padding: 24px; position: relative; overflow: hidden;
-}
-.dark .project-image { background: linear-gradient(135deg, #0D2136 0%, #122030 100%); }
-.project-image svg { color: var(--primary); width: 56px; height: 56px; }
-.project-image img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; transition: transform 0.5s ease; }
-.project-card:hover .project-image img { transform: scale(1.04); }
-.project-content { padding: 20px 22px 22px; display: flex; flex-direction: column; flex-grow: 1; gap: 10px; }
-.project-content h3 { font-size: 1.1rem; }
-.project-content p { font-size: 0.875rem; color: var(--muted-foreground); line-height: 1.6; flex-grow: 1; }
+    .gallery-dialog { width: min(1100px, calc(100% - 48px)); max-height: calc(100dvh - 64px); padding: 26px; overscroll-behavior: contain; }
+    .notice-dialog { width: min(440px, calc(100% - 32px)); padding: 26px; }
 
-.badge {
-  display: inline-flex; align-items: center; align-self: flex-start;
-  padding: 4px 10px; border-radius: var(--radius-full);
-  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  color: #fff;
-  box-shadow: var(--elev-1);
-}
+    .lightbox {
+      margin: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+      padding: 65px 80px 72px; border: 0; border-radius: 0;
+      background: var(--preview-bg); color: var(--preview-ink);
+      align-items: center; justify-content: center;
+    }
+    .lightbox[open] { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 100%; min-width: 0; min-height: 0; object-fit: contain; }
+    .lightbox button {
+      position: absolute; width: 40px; height: 40px; display: grid; place-items: center;
+      border: 1px solid var(--preview-line); border-radius: 5px;
+      background: var(--preview-control); color: var(--preview-ink);
+    }
+    .lightbox button:hover { background: var(--preview-hover); }
+    .lb-close { top: 18px; right: 20px; }
+    .lb-prev  { left: 20px; top: 50%; }
+    .lb-next  { right: 20px; top: 50%; }
+    .lb-caption { position: absolute; bottom: 20px; left: 80px; right: 80px; margin: 0; text-align: center; font-size: 12px; }
 
-.project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.project-tag {
-  font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em;
-  background: var(--primary-soft); color: var(--primary);
-  border-radius: var(--radius-full); padding: 4px 10px; font-weight: 600;
-}
+    /* ---------------------------------------------------------------------
+      13. ANIMATIONS  [EDIT: ANIMATIONS]
+       .reveal elements fade up when scrolled into view (see JS section 7).
+       Remove the "reveal" class from an element to disable it there.
+       --------------------------------------------------------------------- */
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+    .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+    .js .reveal.is-visible { opacity: 1; transform: none; }
 
-.thumbs { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-.thumb {
-  width: 54px; height: 54px; border-radius: 10px;
-  overflow: hidden; cursor: pointer;
-  border: 2px solid var(--border);
-  transition: all 0.25s ease;
-  box-shadow: var(--elev-1);
-}
-.thumb:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--elev-2); }
-.thumb img { width: 100%; height: 100%; object-fit: cover; }
+    /* ---------------------------------------------------------------------
+      14. RESPONSIVE BREAKPOINTS
+       --------------------------------------------------------------------- */
+    @media (min-width: 721px) and (max-height: 800px) {
+      .hero { padding: 45px 0 65px; min-height: 0; }
+    }
 
-/* ============ Contact ============ */
-.contact-cards {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
-  max-width: 920px; margin: 0 auto;
-}
-.contact-card-item h4 {
-  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.22em;
-  color: var(--primary); margin-bottom: 12px; font-weight: 700;
-  display: flex; align-items: center; gap: 8px;
-}
-.contact-card-item h4 svg { width: 14px; height: 14px; }
-.contact-card-item p { color: var(--muted-foreground); font-size: 0.92rem; line-height: 1.7; }
-.contact-card-item a.link { color: var(--primary); font-weight: 600; font-size: 0.92rem; word-break: break-word; }
-.contact-card-item a.link:hover { text-decoration: underline; }
-.contact-card-item .row { display: flex; gap: 10px; margin-top: 4px; }
+    @media (max-width: 1000px) {
+      h1 { font-size: 52px; }
+      .works-layout { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .contact-layout { grid-template-columns: 1fr; gap: 32px; }
+    }
 
-/* ============ Footer ============ */
-.footer {
-  text-align: center; padding: 40px 24px;
-  color: var(--muted-foreground); font-size: 0.85rem;
-  border-top: 1px solid var(--border); margin-top: 40px;
-}
+    @media (max-width: 900px) {
+      .hero-grid { gap: 30px; }
+      .portrait-wrap { max-width: 290px; }
+      .expertise { grid-template-columns: repeat(2, 1fr); }
+    }
 
-/* ============ Lightbox ============ */
-.lightbox {
-  position: fixed; inset: 0; background: rgba(8, 14, 20, 0.82);
-  z-index: 9999; display: none; align-items: center; justify-content: center;
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  padding: 24px; animation: fadeIn 0.25s ease;
-}
-.lightbox.show { display: flex; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.lb-content { text-align: center; max-width: 95%; max-height: 90%; }
-.lb-content img { max-width: 100%; max-height: 80vh; border-radius: 18px; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
-.lb-btn {
-  position: absolute; width: 48px; height: 48px; border-radius: 14px;
-  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18);
-  color: #fff; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  transition: all 0.2s ease;
-}
-.lb-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
-.lb-btn svg { width: 22px; height: 22px; }
-.lb-close { top: 24px; right: 24px; }
-.lb-prev { left: 24px; top: 50%; transform: translateY(-50%); }
-.lb-next { right: 24px; top: 50%; transform: translateY(-50%); }
+    @media (max-width: 720px) {
+      h1 { font-size: 46px; }
+      h2 { font-size: 34px; }
+      .wrap { width: min(100% - 32px, 1180px); }
+      .section { padding: 70px 0; }
 
-/* ============ Reveal animation ============ */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.2,0.8,0.2,1), transform 0.7s cubic-bezier(0.2,0.8,0.2,1); }
-.reveal.in { opacity: 1; transform: translateY(0); }
+      .nav { grid-template-columns: minmax(0,1fr) auto; }
+      .nav > nav { position: absolute; top: calc(100% + 6px); left: 0; right: 0; }
+      .nav-links {
+        display: none; flex-direction: column; align-items: stretch; padding: 9px;
+        border: 1px solid var(--line); border-radius: var(--radius);
+        background: var(--glass); backdrop-filter: blur(18px); box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .nav-link { padding: 11px 13px; }
+      .menu-btn { display: grid; }
+      .nav-cta { display: none; }
 
-/* ============ Responsive ============ */
-@media (max-width: 960px) {
-  .nav-links {
-    position: fixed; top: 84px; left: 16px; right: 16px;
-    flex-direction: column; padding: 14px;
-    border-radius: 22px;
-    background: var(--glass-bg-strong);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-    box-shadow: var(--elev-3);
-    transform: scale(0.95); opacity: 0; pointer-events: none;
-    transition: 0.25s;
-  }
-  .nav-links.open { opacity: 1; transform: scale(1); pointer-events: auto; }
-  .nav-link { padding: 12px 16px; }
-  .nav-cta { display: none; }
-  .menu-btn { display: block; }
-  .hero-grid { grid-template-columns: 1fr; gap: 60px; }
-  .hero-portrait { order: -1; }
-  .about-grid { grid-template-columns: 1fr; }
-  .exp-grid, .edu-grid, .contact-cards { grid-template-columns: 1fr; }
-  .skills { grid-template-columns: repeat(3, 1fr); }
-  .projects-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-  .section { padding: 80px 18px; }
-  .hero { padding: 110px 18px 60px; }
-  .skills { grid-template-columns: repeat(2, 1fr); }
-  .projects-grid { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: 1fr 1fr; }
-}
-</style>
+      .hero { padding: 36px 0 50px; min-height: 0; }
+      .hero-grid { grid-template-columns: minmax(0,1fr); gap: 43px; }
+      .portrait-wrap { margin: 0 auto; max-width: 230px; }
+      .portrait-placeholder strong { font-size: 90px; }
+
+      .about-grid { grid-template-columns: 1fr; }
+      .works-layout { grid-template-columns: minmax(0,1fr); }
+      .gallery-dialog { width: calc(100% - 24px); max-height: calc(100dvh - 24px); padding: 18px; }
+      .gallery { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 520px) {
+      h1 { font-size: 43px; }
+      .hero .lead { font-size: 15px; }
+      .edu-grid, .expertise, .field-row { grid-template-columns: 1fr; }
+      .exp p { min-height: 0; }
+      .gallery { gap: 10px; }
+      .gallery-caption { padding: 9px; min-height: 68px; }
+      .gallery-caption strong { font-size: 11px; }
+      .contact-form { padding: 18px; }
+      .lightbox { padding: 70px 8px 100px; }
+      .lb-prev, .lb-next { top: auto; bottom: 18px; }
+      .lb-prev { left: calc(50% - 58px); }
+      .lb-next { right: calc(50% - 58px); }
+      .lb-caption { bottom: 65px; left: 15px; right: 15px; }
+      .portrait-note { right: -5px; }
+    }
+
+    @media (max-width: 380px) {
+      h1 { font-size: 36px; }
+      h2 { font-size: 29px; }
+      .hero-foot { gap: 10px; }
+      .gallery { grid-template-columns: minmax(0,1fr); }
+      .sample-header h3 { font-size: 23px; }
+      .filters { gap: 5px; }
+      .filter { font-size: 11px; padding: 8px; }
+    }
+
+    /* ---------------------------------------------------------------------
+      15. REDUCED MOTION — respects the visitor's OS setting
+       --------------------------------------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
+
 <body>
+  <!-- =====================================================================
+       HTML — PAGE STRUCTURE
+       Text marked [EDIT] can be changed directly here.
+       Elements with data-config="..." are filled automatically from
+       SITE CONFIG in the JavaScript (edit them there, not here).
+       ===================================================================== -->
 
-<!-- Background -->
-<div class="bg" aria-hidden="true">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-  <div class="grid-bg"></div>
-</div>
-<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <!-- ============================ NAVIGATION ============================ -->
+  <header class="nav-shell">
+    <div class="wrap nav">
+      <a class="logo" href="#home" aria-label="Back to home" data-config="initials">IJE</a>
 
-<!-- Navigation -->
-<nav class="nav" id="nav">
-  <a href="#home" class="brand">IJE<span>.</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#home" class="nav-link active">Home</a></li>
-    <li><a href="#about" class="nav-link">About</a></li>
-    <li><a href="#projects" class="nav-link">Projects</a></li>
-    <li><a href="#contact" class="nav-link">Contact</a></li>
-  </ul>
-  <div class="nav-actions">
-    <a href="#contact" class="btn btn-primary nav-cta">Let's Talk</a>
-    <button class="btn-icon" id="darkModeToggle" aria-label="Toggle dark mode" title="Toggle theme">
-      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      <svg class="moon-icon" style="display:none;" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span></button>
-  </div>
-</nav>
+      <!-- [EDIT] Menu links. The href must match a section id below. -->
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a class="nav-link active" href="#home">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#projects">Works</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-<main>
-
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="hero-grid">
-      <div class="hero-text reveal">
-        <span class="chip"><span class="dot"></span> Available for creative collaborations</span>
-        <h1 class="h1">Creative <em>Designer</em><br/>&amp; IT Professional</h1>
-        <p class="body">Hi, I'm <strong>Ian Jay Emong</strong> — a graphic designer, business owner, BSIT graduate, and creative thinker crafting bold visuals and intuitive digital experiences.</p>
-        <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary">
-            View My Work
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <a href="IJE_RESUME.pdf" target="_blank" class="btn btn-secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-            Resume
-          </a>
-        </div>
-        <div class="socials">
-          <span class="label">Connect</span>
-          <span class="bar"></span>
-          <a href="mailto:emongianjay.ije@gmail.com" aria-label="Email" class="social" data-brand="email">
-            <!-- Gmail logo -->
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
-          </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" class="social" data-brand="facebook">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="social" data-brand="instagram">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-portrait reveal">
-        <div class="portrait-glow"></div>
-        <div class="portrait-frame">
-          <div class="portrait-inner">
-            <img src="IJOE.jpg" alt="Ian Jay Emong portrait"/>
-          </div>
-        </div>
-        <div class="float-card fc1"><span class="dot"></span> 4+ years designing</div>
-        <div class="float-card fc2"><strong>Xhieyan Studio</strong><span>Founder &amp; Creative</span></div>
-        <div class="float-card fc3">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-2px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Surigao, PH
-        </div>
+      <div class="nav-actions">
+        <a class="btn nav-cta" href="#contact">Let's Talk</a>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+          </svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- About -->
-  <section id="about" class="section">
-    <header class="section-head reveal">
-      <span class="subtitle">About</span>
-      <h2 class="h2">The story <em>behind the work</em></h2>
-    </header>
+  <main>
+    <!-- ============================== HERO =============================== -->
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="hero-kicker" data-config="availability">Available for creative collaborations</span>
 
-    <div class="about-grid">
-      <div class="card card-big reveal">
-        <div class="card-head">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 7.36H22l-6.19 4.5L18.2 21 12 16.5 5.8 21l2.39-7.14L2 9.36h7.61z"/></svg>
+          <!-- [EDIT] Main headline -->
+          <h1>Creative Graphic<br>&amp; IT Professional.</h1>
+          <div class="rule"></div>
+
+          <p class="lead">
+            Hi, I'm <strong data-config="name">IAN JAY</strong>
+            — a creative designer, and a business owner,
+            passionate about creating intuitive digital experiences that connect users with value
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn" href="#projects">View My Work <span aria-hidden="true">↗</span></a>
+            <!-- Resume button: path is set in SITE CONFIG → resumeUrl -->
+            <a class="btn btn-outline" id="resumeBtn" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H5v20h14V7Z"></path><path d="M14 2v5h5M8 12h8M8 16h6"></path>
+              </svg>
+              Resume
+            </a>
           </div>
-          <h3>It's Ian Jay</h3>
+
+          <div class="hero-foot">
+            <span>Connect</span>
+            <!-- Social icons are generated from SITE CONFIG → socials -->
+            <div class="socials" id="socials"></div>
+          </div>
         </div>
-        <p>A business owner and graphic designer with a Bachelor of Science in Information Technology. I thrive on challenges that push my creativity and technical skills, turning ideas into innovative, refined designs. Hard-working, adaptable, and deeply curious — I aim to contribute to the growth of every team I join while continuing to evolve as a creative professional.</p>
+
+        <div class="portrait-wrap">
+          <!-- Portrait: set SITE CONFIG → portrait. Empty = initials placeholder. -->
+          <div class="portrait" id="portrait" role="img" aria-label="Portrait of IAN JAY">
+            <div class="portrait-placeholder">
+              <strong data-config="initials">IJE</strong>
+              <small data-config="name">IAN JAY</small>
+            </div>
+          </div>
+          <div class="portrait-note">
+            <span data-config="studioName">Xhieyan Printing Studio (XPS)</span>
+            <span class="note-sub" data-config="studioRole">Founder &amp; Creative</span>
+          </div>
+        </div>
       </div>
-      <div class="stats reveal">
-        <div class="stat"><div class="num">4+</div><div class="num-label">Years Designing</div></div>
-        <div class="stat"><div class="num">50+</div><div class="num-label">Projects Shipped</div></div>
-        <div class="stat"><div class="num">1</div><div class="num-label">Studio Founded</div></div>
-        <div class="stat"><div class="num">BSIT</div><div class="num-label">Class of 2026</div></div>
+    </section>
+
+    <!-- ============================== ABOUT ============================== -->
+    <!-- [EDIT: ABOUT] All text in this section can be edited directly.     -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="eyebrow">About</span>
+          <h2>Design that is clear and personal.</h2>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <h3>It's IAN JAY.</h3>
+            <p>
+              a creative graphic designer and building business. I turn ideas into simple, purposeful designs through creativity, user experience, and research.
+            </p>
+            <p>
+              I combine creativity with technical know-how, and I'm hard-working, adaptable, and
+              always curious to learn. My goal is to create visuals that communicate clearly and
+              help my clients and team stand out.
+            </p>
+          </div>
+
+          <!-- Quick facts — copy a <div class="fact"> block to add one -->
+          <div class="facts reveal">
+            <div class="fact">
+              <div class="fact-mark">01</div>
+              <div><strong>Year of Designing</strong><span>Posters, invitations, logos &amp; more</span></div>
+            </div>
+            <div class="fact">
+              <div class="fact-mark">IT</div>
+              <div><strong>Computer Literacy</strong><span>Bachelor's Degree</span></div>
+            </div>
+            <div class="fact">
+              <div class="fact-mark">Ph</div>
+              <div><strong>Metro Manila</strong><span>Open to local &amp; remote work</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education — copy a <div class="edu"> block to add one -->
+        <h3 class="subhead">Education</h3>
+        <div class="edu-grid">
+          <div class="edu reveal">
+            <span class="eyebrow">Tertiary</span>
+            <h4>Bachelor of Science in Information Technology</h4>
+            <p>Northeastern Mindanao Colleges</p>
+            <time>2022 — 2026</time>
+          </div>
+          <div class="edu reveal">
+            <span class="eyebrow">Senior High School</span>
+            <h4>TVL — ICT</h4>
+            <p>STI College Surigao</p>
+            <time>2020 — 2022</time>
+          </div>
+        </div>
+
+        <!-- Expertise & services — copy an <article class="exp"> block to add one -->
+        <h3 class="subhead">Expertise &amp; Services</h3>
+        <div class="expertise">
+          <article class="exp reveal">
+            <span class="expertise-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m16 3 5 5-12 12-6 1 1-6Z"></path><path d="m14 5 5 5M4 15l5 5"></path>
+              </svg>
+            </span>
+            <h4>Graphic Design</h4>
+            <p>Visual design for personal and business needs, made with care and consistency.</p>
+            <div class="tags">
+              <span class="tag">Branding</span><span class="tag">Layout Design</span><span class="tag">Canva</span>
+              <span class="tag">Logo Design</span><span class="tag">Posters &amp; Invitations</span>
+            </div>
+          </article>
+
+          <article class="exp reveal">
+            <span class="expertise-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m3 9 18-6v18L3 15V9Z"></path><path d="m7 16 1 5h4l-2-4M21 9h1M21 15h1"></path>
+              </svg>
+            </span>
+            <h4>Marketing</h4>
+            <p>Promotional visuals that help businesses get noticed and communicate offers clearly.</p>
+            <div class="tags">
+              <span class="tag">Promotional Posters</span><span class="tag">Social Media Graphics</span><span class="tag">Hiring Posters</span>
+            </div>
+          </article>
+
+          <article class="exp reveal">
+            <span class="expertise-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 9V3h12v6M6 18H3V9h18v9h-3"></path><path d="M6 14h12v7H6zM17 12h1"></path>
+              </svg>
+            </span>
+            <h4>Printing Services</h4>
+            <p>Quality printing through Xhieyan Printing Studio for students, professionals, and small businesses.</p>
+            <div class="tags">
+              <span class="tag">Document Printing</span><span class="tag">Photo Prints</span><span class="tag">PVC Cards</span>
+            </div>
+          </article>
+        </div>
       </div>
+    </section>
+
+    <!-- ============================== WORKS ============================== -->
+    <!-- Project cards are generated from PROJECTS in the JavaScript.       -->
+    <!-- Edit the heading text here; edit the cards in [EDIT: PROJECTS].    -->
+    <section class="section" id="projects">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="eyebrow">My Works</span>
+          <h2>Selected work.</h2>
+          <p class="lead">From personal projects to graphic design samples and on-the-job training work.</p>
+        </header>
+        <div class="works-layout" id="projectList"></div>
+      </div>
+    </section>
+
+    <!-- ============================= CONTACT ============================= -->
+    <section class="section" id="contact">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="eyebrow">Contact</span>
+          <h2>Let's create something together.</h2>
+          <p class="lead">Have a project, collaboration, or opportunity? I'd love to hear from you.</p>
+        </header>
+
+        <div class="contact-layout">
+          <!-- Contact details are filled from SITE CONFIG → contact -->
+          <div class="contact-list reveal">
+            <div class="contact-item">
+              <h3>Email</h3>
+              <!-- Email is assembled by JS so it is not sitting in plain HTML for scrapers -->
+              <a id="emailLink" href="#contact">Enable JavaScript to view email</a>
+            </div>
+            <div class="contact-item">
+              <h3>Studio</h3>
+              <p><span data-config="contact.studio">Xhieyan Printing Studio (XPS)</span><br><span data-config="contact.location">Surigao City, Philippines</span></p>
+            </div>
+            <div class="contact-item">
+              <h3>Response time</h3>
+              <p data-config="contact.responseTime">Usually within 1–2 days</p>
+            </div>
+          </div>
+
+          <!-- CONTACT FORM — settings live in SITE CONFIG → form -->
+          <form class="contact-form reveal" id="contactForm" novalidate>
+            <div class="field-row">
+              <div class="field">
+                <label for="cf-name">Name</label>
+                <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="80">
+                <span class="field-error" id="cf-name-error"></span>
+              </div>
+              <div class="field">
+                <label for="cf-email">Email</label>
+                <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="120">
+                <span class="field-error" id="cf-email-error"></span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" required maxlength="3000"></textarea>
+              <span class="field-error" id="cf-message-error"></span>
+            </div>
+
+            <!-- HONEYPOT (anti-spam): real visitors never see or fill this. Keep it. -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="cf-website">Website</label>
+              <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- TURNSTILE (optional, add later): after enabling the script in <head>,
+                 uncomment this and paste your PUBLIC site key (never the secret key).
+                 The secret key must only be used on a server to verify the token. -->
+            <!-- <div class="cf-turnstile" data-sitekey="YOUR_PUBLIC_SITE_KEY"></div> -->
+
+            <button class="btn" type="submit" id="cfSubmit">Send message <span aria-hidden="true">↗</span></button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+            <p class="form-note">
+              Basic spam filtering is on. If sending fails, you can email directly using the link on the left.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== FOOTER =============================== -->
+  <footer>
+    <div class="wrap">
+      © <span id="year"></span> <span data-config="name">2026 Ian Jay Emong</span>. All rights reserved.
     </div>
-
-    <div class="exp-grid">
-      <div class="card reveal">
-        <div class="meta">Mar 2026 — May 2026</div>
-        <h3>IT Intern · Marketing</h3>
-        <p class="role">X-Meta Technologies Inc.</p>
-        <p style="margin-top:10px;">Drove marketing operations end-to-end — managing client databases in Excel, executing email blast campaigns, and designing promotional and hiring posters in Canva. Coordinated quotations with vendors and owned mall directory mapping with accurate backend updates.</p>
-      </div>
-      <div class="card reveal">
-        <div class="meta">Dec 2024 — Present</div>
-        <h3>Founder &amp; Creative Lead</h3>
-        <p class="role">Xhieyan Printing Studio</p>
-        <p style="margin-top:10px;">A boutique print and design studio in Surigao City serving students, professionals, and small businesses with high-quality printing, photo prints, and custom graphic design — from posters and menus to full branding systems and promotional materials.</p>
-      </div>
-    </div>
-
-    <h3 class="sub-head reveal">
-      <span class="icon-pill">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-      </span>
-      Education
-    </h3>
-    <div class="edu-grid">
-      <div class="card reveal">
-        <span class="subtitle">Tertiary</span>
-        <h4>Bachelor of Science in Information Technology</h4>
-        <p>Northeastern Mindanao Colleges</p>
-        <p class="year">2022 — 2026</p>
-      </div>
-      <div class="card reveal">
-        <span class="subtitle">Senior High School</span>
-        <h4>TVL — ICT</h4>
-        <p>STI College Surigao</p>
-        <p class="year">2020 — 2022</p>
-      </div>
-    </div>
-
-    <h3 class="sub-head reveal">
-      <span class="icon-pill">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
-      </span>
-      Expertise
-    </h3>
-    <div class="skills">
-      <div class="skill reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
-        Graphic Design
-      </div>
-      <div class="skill reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 7.36H22l-6.19 4.5L18.2 21 12 16.5 5.8 21l2.39-7.14L2 9.36h7.61z"/></svg></div>
-        Branding
-      </div>
-      <div class="skill reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
-        Layout Design
-      </div>
-      <div class="skill reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
-        Marketing Design
-      </div>
-      <div class="skill reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
-        Printing Services
-      </div>
-      <div class="skill reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div>
-        Canva Pro
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="section">
-    <header class="section-head reveal">
-      <span class="subtitle">My Work</span>
-      <h2 class="h2">Projects &amp; <em>Portfolio</em></h2>
-      <p class="body" style="margin-top:14px;">A selection of design and development work — from branding and printed posters to digital experiences.</p>
-    </header>
-
-    <div class="projects-grid">
-
-      <div class="project-card reveal">
-        <div class="project-image">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <div class="project-content">
-          <h3>Personal Portfolio Website</h3>
-          <span class="badge">Web Development</span>
-          <p>A responsive portfolio website showcasing my skills, education, and projects — built with HTML, CSS, and JavaScript.</p>
-          <div class="project-tags">
-            <span class="project-tag">HTML</span>
-            <span class="project-tag">CSS</span>
-            <span class="project-tag">JavaScript</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-image" style="padding:0;">
-          <img src="bboy.png" alt="Birthday Poster - Aidrian" onclick="openLightbox(0)">
-        </div>
-        <div class="project-content">
-          <h3>Birthday Poster</h3>
-          <span class="badge">Graphic Design</span>
-          <p>Personalized birthday posters for friends — each design customized to their personality, combining creative layouts and eye-catching visuals.</p>
-          <div class="project-tags">
-            <span class="project-tag">Poster</span>
-            <span class="project-tag">Print</span>
-          </div>
-          <div class="thumbs">
-            <div class="thumb" onclick="openLightbox(0)"><img src="bboy.png" alt="Aidrian"></div>
-            <div class="thumb" onclick="openLightbox(1)"><img src="patrick.png" alt="Patrick"></div>
-            <div class="thumb" onclick="openLightbox(2)"><img src="joefred.png" alt="Joefred"></div>
-            <div class="thumb" onclick="openLightbox(3)"><img src="aira.png" alt="Aira"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-image" style="padding:0;">
-          <img src="2.png" alt="Invitation Card - Front" onclick="openLightbox(4)">
-        </div>
-        <div class="project-content">
-          <h3>Invitation Card Design</h3>
-          <span class="badge">Graphic Design</span>
-          <p>My very first official client project — a custom Christening &amp; 1st Birthday invitation, with playful layouts and soft blue tones.</p>
-          <div class="project-tags">
-            <span class="project-tag">Invitation</span>
-            <span class="project-tag">Print</span>
-          </div>
-          <div class="thumbs">
-            <div class="thumb" onclick="openLightbox(4)"><img src="2.png" alt="Front"></div>
-            <div class="thumb" onclick="openLightbox(5)"><img src="3.png" alt="Back"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-image" style="padding:0;">
-          <img src="p2.png" alt="Promoting Poster" onclick="openLightbox(7)">
-        </div>
-        <div class="project-content">
-          <h3>Promoting Poster</h3>
-          <span class="badge">Graphic Design</span>
-          <p>Self-created advertising posters promoting my printing services — countdowns, step guides, and clear service descriptions.</p>
-          <div class="project-tags">
-            <span class="project-tag">Advertising</span>
-            <span class="project-tag">Print</span>
-          </div>
-          <div class="thumbs">
-            <div class="thumb" onclick="openLightbox(6)"><img src="p1.png" alt="Promo 1"></div>
-            <div class="thumb" onclick="openLightbox(7)"><img src="p2.png" alt="Promo 2"></div>
-            <div class="thumb" onclick="openLightbox(8)"><img src="p3.png" alt="Promo 3"></div>
-            <div class="thumb" onclick="openLightbox(9)"><img src="p4.png" alt="Promo 4"></div>
-            <div class="thumb" onclick="openLightbox(10)"><img src="p5.png" alt="Promo 5"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-image" style="padding:0;">
-          <img src="front.png" alt="K-Pop Inspired Design - Front" onclick="openLightbox(11)">
-        </div>
-        <div class="project-content">
-          <h3>Aesthetic K-Pop Design</h3>
-          <span class="badge">Graphic Design</span>
-          <p>A personal creative project — an aesthetic K-Pop inspired layout designed from scratch and printed as a PVC card.</p>
-          <div class="project-tags">
-            <span class="project-tag">K-Pop</span>
-            <span class="project-tag">PVC Card</span>
-          </div>
-          <div class="thumbs">
-            <div class="thumb" onclick="openLightbox(11)"><img src="front.png" alt="Front"></div>
-            <div class="thumb" onclick="openLightbox(12)"><img src="back.png" alt="Back"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-image" style="padding:0;">
-          <img src="lg4.png" alt="Logo - Sample 4" onclick="openLightbox(14)">
-        </div>
-        <div class="project-content">
-          <h3>Logos</h3>
-          <span class="badge">Brand Identity</span>
-          <p>Custom logo designs for my mini printing business — building brand identity through thoughtful typography and clean design.</p>
-          <div class="project-tags">
-            <span class="project-tag">Logo</span>
-            <span class="project-tag">Branding</span>
-          </div>
-          <div class="thumbs">
-            <div class="thumb" onclick="openLightbox(13)"><img src="lg1.png" alt="Logo 1"></div>
-            <div class="thumb" onclick="openLightbox(14)"><img src="lg2.png" alt="Logo 2"></div>
-            <div class="thumb" onclick="openLightbox(15)"><img src="lg3.png" alt="Logo 3"></div>
-            <div class="thumb" onclick="openLightbox(16)"><img src="lg4.png" alt="Logo 4"></div>
-            <div class="thumb" onclick="openLightbox(17)"><img src="lg5.png" alt="Logo 5"></div>
-            <div class="thumb" onclick="openLightbox(18)"><img src="lg6.png" alt="Logo 6"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-image">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <div class="project-content">
-          <h3>Coming Soon</h3>
-          <span class="badge" style="background:linear-gradient(135deg, var(--accent), #FFB58A);">In Progress</span>
-          <p>More exciting projects are in development. Stay tuned for updates!</p>
-          <div class="project-tags">
-            <span class="project-tag">In Progress</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-    <button class="lb-btn lb-close" onclick="closeLightbox(event)" aria-label="Close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <button class="lb-btn lb-prev" onclick="changeLightbox(-1, event)" aria-label="Previous">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <button class="lb-btn lb-next" onclick="changeLightbox(1, event)" aria-label="Next">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <div class="lb-content" onclick="event.stopPropagation()">
-      <img id="lb-img" src="" alt="Preview">
-    </div>
-  </div>
-
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <header class="section-head reveal">
-      <span class="subtitle">Contact</span>
-      <h2 class="h2">Let's create <em>something bold</em></h2>
-      <p class="body" style="margin-top:14px;">Have a project, collaboration, or opportunity? Let's connect.</p>
-    </header>
-    <div class="contact-cards reveal">
-      <div class="card contact-card-item">
-        <h4>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
-          Email
-        </h4>
-        <a class="link" href="mailto:emongianjay.ije@gmail.com">emongianjay.ije@gmail.com</a>
-      </div>
-      <div class="card contact-card-item">
-        <h4>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Studio
-        </h4>
-        <p>Xhieyan Printing Studio<br/>Surigao City, Philippines</p>
-      </div>
-      <div class="card contact-card-item">
-        <h4>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
-          Follow
-        </h4>
-        <div class="row">
-          <a href="https://facebook.com" target="_blank" rel="noopener" class="social" data-brand="facebook" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener" class="social" data-brand="instagram" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-          </a>
-          <a href="mailto:emongianjay.ije@gmail.com" class="social" data-brand="email" aria-label="Email">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <p>© <span id="year"></span> Ian Jay Emong · Crafted with care in Surigao, PH</p>
   </footer>
-</main>
 
-<script>
-/* ============ Lightbox ============ */
-const lightboxImages = [
-  'bboy.png', 'patrick.png', 'joefred.png', 'aira.png',
-  '2.png', '3.png',
-  'p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png',
-  'front.png', 'back.png', '',
-  'lg1.png', 'lg2.png', 'lg3.png', 'lg4.png', 'lg5.png', 'lg6.png'
-];
-let currentImageIndex = 0;
-function openLightbox(index) {
-  currentImageIndex = index;
-  if (!lightboxImages[index]) return;
-  document.getElementById('lb-img').src = lightboxImages[index];
-  document.getElementById('lightbox').classList.add('show');
-}
-function closeLightbox(event) {
-  if (event) event.stopPropagation();
-  document.getElementById('lightbox').classList.remove('show');
-}
-function changeLightbox(direction, event) {
-  if (event) event.stopPropagation();
-  let next = currentImageIndex;
-  for (let i = 0; i < lightboxImages.length; i++) {
-    next += direction;
-    if (next < 0) next = lightboxImages.length - 1;
-    if (next >= lightboxImages.length) next = 0;
-    if (lightboxImages[next]) { openLightbox(next); return; }
-  }
-}
-document.addEventListener('keydown', (e) => {
-  if (!document.getElementById('lightbox').classList.contains('show')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') changeLightbox(-1);
-  if (e.key === 'ArrowRight') changeLightbox(1);
-});
+  <!-- ============================== DIALOGS ============================== -->
+  <!-- Gallery dialog (opened by projects with action: "gallery") -->
+  <dialog class="gallery-dialog" id="galleryDialog" aria-labelledby="galleryTitle">
+    <div class="dialog-top">
+      <span class="eyebrow">Selected collection</span>
+      <button class="icon-btn" id="galleryClose" type="button" aria-label="Close gallery">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"></path></svg>
+      </button>
+    </div>
+    <div class="sample-header">
+      <span class="eyebrow">Gallery / Graphics</span>
+      <h3 id="galleryTitle">Personal / Sample Graphics Works</h3>
+      <p>Selected samples, drafts, and practical design work. Choose a category to browse the collection.</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Sample work categories"></div>
+    <div class="gallery" id="gallery"></div>
+    <p class="empty" id="galleryEmpty" hidden>No images in this category yet — coming soon.</p>
+  </dialog>
 
-/* ============ Year ============ */
-document.getElementById('year').textContent = new Date().getFullYear();
+  <!-- Notice dialog (used when a link like Resume/Facebook isn't set yet) -->
+  <dialog class="notice-dialog" id="noticeDialog" aria-labelledby="noticeTitle">
+    <div class="dialog-top">
+      <h3 id="noticeTitle"></h3>
+      <button class="icon-btn" id="noticeClose" type="button" aria-label="Close notice">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"></path></svg>
+      </button>
+    </div>
+    <p class="muted" id="noticeText"></p>
+    <a class="btn" href="#contact" id="noticeContact">Go to contact form</a>
+  </dialog>
 
-/* ============ Cursor glow ============ */
-const glow = document.getElementById('cursorGlow');
-window.addEventListener('mousemove', (e) => {
-  glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%,-50%)`;
-});
+  <!-- Full-screen image preview -->
+  <dialog class="lightbox" id="lightbox" aria-label="Image preview">
+    <button class="lb-close" id="lbClose" type="button" aria-label="Close image preview">✕</button>
+    <button class="lb-prev" id="lbPrev" type="button" aria-label="Previous image">←</button>
+    <img id="lbImg" alt="">
+    <button class="lb-next" id="lbNext" type="button" aria-label="Next image">→</button>
+    <p class="lb-caption" id="lbCaption"></p>
+  </dialog>
 
-/* ============ Reveal on scroll ============ */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((en, i) => {
-    if (en.isIntersecting) {
-      setTimeout(() => en.target.classList.add('in'), i * 60);
-      io.unobserve(en.target);
+
+  <!-- =====================================================================
+       JAVASCRIPT PART 1 — IMAGE LIBRARY   [EDIT: IMAGE LIBRARY]
+
+       Every image used on the site is listed here ONCE, by a short name.
+       Projects and gallery items refer to images by that name.
+
+       Right now the images are embedded (long "data:image/webp;base64,..."
+       text) so this single file works anywhere with no extra files.
+
+       EASIEST WAY TO ADD / REPLACE AN IMAGE:
+         1. Put the image in a folder next to index.html, e.g. images/
+         2. Add a line:   "my-new-poster": "images/my-new-poster.jpg",
+         3. Use "my-new-poster" in GALLERY or PROJECTS below.
+       To replace an existing image, just swap its value for a file path:
+           "more-coffee": "images/coffee-v2.jpg",
+       ===================================================================== -->
+  <script>
+    window.IMAGES = {
+      // --- Birthday posters ---
+      "f2-birthday": "joefred.png",
+      "f3-birthday": "aira.png",
+      "f4-birthday": "ronna.png",
+      "f5-birthday": "bboy.png",
+      "f6-birthday": "patrick.png",
+
+      // --- Invitation layout ---
+      "sample-1-front": "2.png",
+      "sample-1-back": "3.png",
+
+      // --- Promotional posters ---
+      "promo-sample": "p1.png",
+      "promo-sample": "p2.png",
+      "promo-sample": "p3.png",
+      "promo-sample": "p4.png",
+      "promo-sample": "p5.png",
+
+      // --- Logo design ---
+      "logo-sample": "lg1.png",
+      "logo-sample": "lg2.png",
+      "logo-sample": "lg3.png",
+      "logo-sample": "lg4.png",
+      "logo-sample": "lg5.png",
+      "logo-sample": "lg6.png",
+
+      // ---- PVC graphics ---
+      "sample-graphics": "front.png",
+      "sample-graphics": "back.png",
+
+      // --- Internship / OJT works ---
+      "posters-sample": "HP1.png",
+      "posters-sample": "HP2.png",
+      "posters-sample": "HP3.png",
+      "posters-sample": "HP4.png",
+      "posters-sample": "ADS1.png",
+
+      // --- More sample works ---
+      "drafts-graphics": "promo-sample1.png",
+      "drafts-graphics": "promo-sample2.png",
+
+      // --- Add new images below this line (file paths are recommended) ---
+      // "invite-wedding-01": "images/invite-wedding-01.jpg",
+      // "logo-cafe-01":      "images/logo-cafe-01.png",
+      // "profile-photo":     "images/profile.jpg",
+    };
+  </script>
+
+
+  <!-- =====================================================================
+       JAVASCRIPT PART 2 — CONTENT DATA (edit these often)
+       ===================================================================== -->
+  <script>
+    /* -------------------------------------------------------------------
+       [EDIT: SITE CONFIG]  Your personal information and links
+       ------------------------------------------------------------------- */
+    window.SITE_CONFIG = {
+      name:         "IAN JAY",
+      initials:     "IJE",
+      availability: "Available for creative collaborations",
+      studioName:   "Xhieyan Printing Studio (XPS)",
+      studioRole:   "Founder & Creative",
+
+      // Hero/profile photo. Use an IMAGES name or a file path ("images/me.jpg").
+      // Leave "" to show the initials placeholder circle.
+      portrait: "xy.jpg",
+
+      // Resume / CV file path, e.g. "files/Ian-Jay-Emong-Resume.pdf".
+      // Leave "" to show a friendly "not available yet" message instead.
+      resumeUrl: "xhieyanresume.pdf",
+
+      // Email is split in two parts so it isn't stored as one plain address
+      // (makes simple scraping bots less likely to harvest it).
+      email: { user: "emongianjay.ije", domain: "gmail.com" },
+
+      // Social links. Leave url "" to show "not available yet" on click.
+      // Allowed icons: "facebook", "instagram", "linkedin", "behance", "email"
+      socials: [
+        { label: "Email",     icon: "email",     url: "email" }, // "email" = uses the email above
+        { label: "Facebook",  icon: "facebook",  url: "https://www.facebook.com/share/1DnfY2hH2L/" },      // e.g. "https://facebook.com/yourname"
+        { label: "Instagram", icon: "instagram", url: "https://www.instagram.com/xhieyanxy?stkn=ODJpb2VteW50Mm1z" },      // e.g. "https://instagram.com/yourname"
+        { label: "LinkedIn",  icon: "linkedin",  url: "https://www.linkedin.com/in/ian-jay-emong-984a562b9?utm_source=share_via&utm_content=profile&utm_medium=member_android" },      // e.g. "https://linkedin.com/in/yourname"
+      ],
+
+      // Contact section text
+      contact: {
+        studio:       "Xhieyan Printing Studio",
+        location:     "Surigao City, Philippines",
+        responseTime: "Usually within 1–2 days",
+      },
+
+      // Contact form behavior
+      form: {
+        // OPTION A (default, endpoint ""): opens the visitor's email app with
+        //   the message pre-filled. Works with zero setup.
+        // OPTION B: paste a PUBLIC form endpoint from a form service
+        //   (e.g. Formspree "https://formspree.io/f/xxxxxx", Web3Forms, Getform).
+        //   These URLs are designed to be public. NEVER paste secret keys here.
+        endpoint: "",
+        subject:  "Project inquiry from portfolio",
+      },
+    };
+
+    /* -------------------------------------------------------------------
+       [EDIT: PROJECTS]  The cards in the "Works" section
+       -------------------------------------------------------------------
+       Copy one { ... } block to add a project; delete one to remove it.
+       Order here = order on the page.
+
+       Fields:
+         eyebrow     small label on top         "04 / Branding"
+         title       card title
+         description short paragraph
+         tags        list of small tags         ["Logo", "Print"]
+         preview     what shows in the top area:
+                       "image"       → uses `image` below
+                       "browser"     → mini website mock-up
+                       "coming-soon" → animated placeholder
+         image       IMAGES name or file path (when preview is "image")
+         action      what clicking does:
+                       "gallery"  → opens the gallery dialog
+                       "link"     → goes to `url`
+                       "none"     → not clickable
+         galleryCategory  which gallery tab to open first (action "gallery")
+         url         link for action "link" (e.g. "https://..." or "#home")
+         linkText    text of the small link under the card
+       ------------------------------------------------------------------- */
+    window.PROJECTS = [
+      {
+        eyebrow: "Web Development",
+        title: "Personal Portfolio Website",
+        description: "This responsive portfolio website showcasing my skills, education, and work — built with HTML, CSS, and JavaScript.",
+        tags: ["HTML", "CSS", "JavaScript"],
+        preview: "browser",
+        action: "link",
+        url: "#home",
+        linkText: "View site",
+      },
+      {
+        eyebrow: "Graphic Design",
+        title: "Personal Graphics Works",
+        description: "A collection of graphic design samples, drafts, and practice works — birthday posters, invitation cards, promotional posters, logos, aesthetic K-Pop designs, internship work, and more.",
+        tags: ["Posters", "Practice Works", "Internship"],
+        preview: "image",
+        image: "front.png",
+        action: "gallery",
+        galleryCategory: "birthday",
+        linkText: "Explore gallery",
+      },
+      {
+        eyebrow: "Stay Tuned!",
+        title: "Coming Soon",
+        description: "More projects are in development. New ideas, creative experiments, and future collaborations.",
+        tags: ["Upcoming Projects"],
+        preview: "coming-soon",
+        action: "none",
+      },
+    ];
+
+    /* -------------------------------------------------------------------
+       [EDIT: GALLERY]  Categories (tabs) and their images
+       -------------------------------------------------------------------
+       Each category is independent — add, remove or replace images in
+       one without touching the others. An empty items: [] list shows
+       "No images in this category yet".
+
+       Item fields:
+         image    IMAGES name or file path
+         title    bold caption
+         caption  small caption (also used as the image description)
+
+       To add a NEW category, copy a whole { id: ..., items: [...] } block
+       and give it a unique id (lowercase, no spaces).
+       ------------------------------------------------------------------- */
+    window.GALLERY = [
+      {
+        id: "birthday", label: "Birthday Poster",
+        items: [
+          { image: "joefred.png", title: "Birthday Poster", caption: "Birthday poster · F8" },
+          { image: "aira.png", title: "Birthday Poster", caption: "Birthday poster · F8" },
+          { image: "ronna.png", title: "Birthday Poster", caption: "Birthday poster · F8" },
+          { image: "bboy.png", title: "Birthday Poster", caption: "Birthday poster · F8" },
+          { image: "patrick.png", title: "Birthday Poster", caption: "Birthday poster · F8" },
+        ],
+      },
+      {
+        id: "invitation", label: "Invitation Card",
+        items: [
+          { image: "2.png", title: "Birthday Invite", caption: "Invitation card · Birthday (front)" },
+          { image: "3.png", title: "Birthday Invite", caption: "Invitation card · Birthday (back)" },
+        ],
+      },
+      {
+        id: "promo", label: "Promotional Posters",
+        items: [
+          { image: "p1.png", title: "Sample Promotion", caption: "Promotional poster · Opening" },
+          { image: "p2.png", title: "Sample Promotion", caption: "Promotional poster · Opening" },
+          { image: "p3.png", title: "Sample Promotion", caption: "Promotional poster · Ads" },
+          { image: "p4.png", title: "Sample Promotion", caption: "Promotional poster · Services" },
+          { image: "p5.png", title: "Sample Promotion", caption: "Promotional poster · Steps" },
+        ],
+      },
+      {
+        id: "logos", label: "Logos",
+        items: [
+          { image: "lg1.png", title: "XPS Logo", caption: "Logo · XPS" },
+          { image: "lg2.png", title: "XPS Logo", caption: "Logo · XPS" },
+          { image: "lg3.png", title: "XPS Logo", caption: "Logo · XPS" },
+          { image: "lg4.png", title: "XPS Logo", caption: "Logo · XPS" },
+          { image: "lg5.png", title: "XPS Logo", caption: "Logo · XPS" },
+          { image: "lg6.png", title: "XPS Logo", caption: "Logo · XPS" },
+        ],
+      },
+      {
+        id: "kpop", label: "Aesthetic K-Pop Designs",
+        items: [
+          { image: "front.png", title: "K-Pop Design", caption: "PVC Aesthetic K-Pop Design" },
+          { image: "back.png", title: "K-Pop Design", caption: "PVC Aesthetic K-Pop Design" },
+        ],
+      },
+      {
+        id: "ojt", label: "Internship / OJT Works",
+        items: [
+          { image: "HP1.png", title: "Hiring Poster", caption: "Executive Assistant" },
+          { image: "HP2.png", title: "Hiring Poster", caption: "Marketing Trainee" },
+          { image: "HP3.png", title: "Hiring Poster", caption: "Internship Recruitment Poster" },
+          { image: "HP4.png", title: "Hiring Poster", caption: "Multimedia Intern Poster" },
+          { image: "ADS1.png",  title: "Ads Poster",  caption: "Promotional Poster" },
+        ],
+      },
+      {
+        id: "more", label: "More Sample Works",
+        items: [
+          { image: "sample-promo1.png", title: "Iced Matcha Latte", caption: "More Sample Works · Coffee promotion" },
+          { image: "sample-promo2.png", title: "The Perfect Blend", caption: "More Sample Works · Coffee promotion" },
+        ],
+      },
+    ];
+
+    /* -------------------------------------------------------------------
+       [EDIT: SPAM PROTECTION]  Contact form rules
+       NOTE: Client-side checks only stop simple bots. They cannot block
+       all spam. For stronger protection add Turnstile/CAPTCHA (see the
+       TURNSTILE comments) and verify it on a server or form service.
+       ------------------------------------------------------------------- */
+    window.SPAM_RULES = {
+      minSecondsBeforeSubmit: 4,    // bots often submit instantly
+      cooldownSeconds:        60,   // wait time between two submissions
+      minMessageLength:       10,
+      maxLinksInMessage:      2,    // spam often contains many links
+    };
+
+    /* -------------------------------------------------------------------
+       [EDIT: ANIMATIONS]
+       ------------------------------------------------------------------- */
+    window.MOTION = {
+      reveal:       true,   // fade-up on scroll (false = off)
+      dialogMotion: true,   // gentle slide-in for popups
+    };
+  </script>
+
+
+  <!-- =====================================================================
+       JAVASCRIPT PART 3 — SITE LOGIC
+       You normally don't need to edit below this line.
+       ===================================================================== -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ---- 1. Helpers --------------------------------------------------- */
+    const root   = document.documentElement;
+    const byId   = (id) => document.getElementById(id);
+    const $$     = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
+    const config = window.SITE_CONFIG;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    root.classList.add('js');
+
+    // Turn an IMAGES name into a usable src; file paths pass through unchanged.
+    const img = (key) => (key && window.IMAGES[key]) || key || '';
+
+    // Create an element with attributes + children (avoids messy HTML strings).
+    function el(tag, attrs = {}, ...children) {
+      const node = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (v === false || v == null) continue;
+        if (k === 'class') node.className = v;
+        else if (k === 'html') node.innerHTML = v; // only used for trusted icon SVGs
+        else if (k.startsWith('on')) node.addEventListener(k.slice(2), v);
+        else node.setAttribute(k, v);
+      }
+      children.flat().forEach((c) => c != null && node.append(c));
+      return node;
     }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-/* ============ Active nav link ============ */
-const links = document.querySelectorAll('.nav-link');
-const sections = ['home','about','projects','contact'].map((id) => document.getElementById(id));
-const navIO = new IntersectionObserver((entries) => {
-  entries.forEach((en) => {
-    if (en.isIntersecting) {
-      const id = en.target.id;
-      links.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    const getEmail = () => config.email.user + '@' + config.email.domain;
+
+    /* ---- 2. Icons ------------------------------------------------------ */
+    const ICONS = {
+      email:     '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="m2 7 10 7 10-7"/>',
+      facebook:  '<path d="M14 21v-8h3l.5-4H14V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H7v4h3v8"/>',
+      instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/>',
+      linkedin:  '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7h.01M11 17v-7M11 13a3 3 0 0 1 6 0v4"/>',
+      behance:   '<path d="M3 6h6a3 3 0 0 1 0 6H3zM3 12h7a3 3 0 0 1 0 6H3zM14 7h6M14 14h7a3.5 3.5 0 1 0-1 3"/>',
+      code:      '<path d="m8 5-6 7 6 7M16 5l6 7-6 7M14 3l-4 18"/>',
+    };
+    const svg = (name, size) =>
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"' +
+      (size ? ' style="width:' + size + 'px;height:' + size + 'px"' : '') + '>' + (ICONS[name] || '') + '</svg>';
+
+    /* ---- 3. Fill config values into the page -------------------------- */
+    $$('[data-config]').forEach((node) => {
+      const value = node.dataset.config.split('.').reduce((o, k) => (o ? o[k] : undefined), config);
+      if (typeof value === 'string') node.textContent = value;
+    });
+
+    // Portrait
+    if (config.portrait) {
+      const portrait = byId('portrait');
+      portrait.replaceChildren(el('img', { src: img(config.portrait), alt: 'Portrait of ' + config.name }));
+      portrait.removeAttribute('role');
     }
-  });
-}, { rootMargin: '-45% 0px -50% 0px' });
-sections.forEach((s) => s && navIO.observe(s));
 
-/* ============ Mobile menu ============ */
-const menuBtn = document.getElementById('menuBtn');
-const navUl = document.getElementById('navLinks');
-menuBtn.addEventListener('click', () => {
-  menuBtn.classList.toggle('open');
-  navUl.classList.toggle('open');
-});
-navUl.addEventListener('click', (e) => {
-  if (e.target.classList.contains('nav-link')) {
-    menuBtn.classList.remove('open');
-    navUl.classList.remove('open');
-  }
-});
+    // Notice popup for links that aren't set up yet
+    const notice = byId('noticeDialog');
+    function showNotice(title, text) {
+      byId('noticeTitle').textContent = title;
+      byId('noticeText').textContent = text;
+      openDialog(notice);
+    }
 
-/* ============ Magnetic buttons ============ */
-document.querySelectorAll('.btn').forEach(btn => {
-  btn.addEventListener('mousemove', (e) => {
-    const r = btn.getBoundingClientRect();
-    const x = e.clientX - r.left - r.width / 2;
-    const y = e.clientY - r.top - r.height / 2;
-    btn.style.transform = `translate(${x*0.12}px, ${y*0.2}px)`;
-  });
-  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
-});
+    // Resume button
+    const resumeBtn = byId('resumeBtn');
+    if (config.resumeUrl) {
+      resumeBtn.href = config.resumeUrl;
+      resumeBtn.target = '_blank';
+      resumeBtn.rel = 'noopener';
+    } else {
+      resumeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showNotice('Résumé not yet available', 'The résumé has not been uploaded yet. Send a message to request a copy.');
+      });
+    }
 
-/* ============ Dark mode ============ */
-const darkModeToggle = document.getElementById('darkModeToggle');
-const html = document.documentElement;
-const sunIcon = darkModeToggle.querySelector('.sun-icon');
-const moonIcon = darkModeToggle.querySelector('.moon-icon');
-function updateIcons() {
-  const isDark = html.classList.contains('dark');
-  sunIcon.style.display = isDark ? 'block' : 'none';
-  moonIcon.style.display = isDark ? 'none' : 'block';
-}
-if (localStorage.getItem('darkMode') === 'true') html.classList.add('dark');
-updateIcons();
-darkModeToggle.addEventListener('click', (e) => {
-  e.preventDefault(); e.stopPropagation();
-  html.classList.toggle('dark');
-  localStorage.setItem('darkMode', html.classList.contains('dark'));
-  updateIcons();
-});
-</script>
+    // Social icons
+    const socials = byId('socials');
+    config.socials.forEach((s) => {
+      const isEmail = s.url === 'email';
+      const href = isEmail ? 'mailto:' + getEmail() : s.url;
+      const attrs = { class: 'icon-btn', 'aria-label': s.label, title: s.label, html: svg(s.icon) };
+      if (href) {
+        socials.append(el('a', Object.assign(attrs, isEmail ? { href } : { href, target: '_blank', rel: 'noopener' })));
+      } else {
+        socials.append(el('button', Object.assign(attrs, {
+          type: 'button',
+          onclick: () => showNotice(s.label + ' profile not yet available', 'This profile link has not been added yet. Send a message to get in touch.'),
+        })));
+      }
+    });
+
+    // Email link in contact section (assembled here, not in the HTML)
+    const emailLink = byId('emailLink');
+    emailLink.href = 'mailto:' + getEmail();
+    emailLink.textContent = getEmail();
+
+    byId('year').textContent = new Date().getFullYear();
+
+    /* ---- 4. Theme + mobile menu --------------------------------------- */
+    const themeBtn = byId('themeToggle');
+    function setTheme(value) {
+      root.dataset.theme = value;
+      const label = value === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+      themeBtn.setAttribute('aria-label', label);
+      themeBtn.title = label;
+      themeBtn.setAttribute('aria-pressed', String(value === 'dark'));
+      try { localStorage.setItem('ije-theme', value); } catch (_) { /* storage may be blocked */ }
+    }
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem('ije-theme'); } catch (_) {}
+    setTheme(['light', 'dark'].includes(savedTheme) ? savedTheme
+      : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+    themeBtn.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
+
+    const menuBtn = byId('menuBtn'), navLinks = byId('navLinks');
+    function setMenu(open) {
+      navLinks.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    menuBtn.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+    $$('a', navLinks).forEach((a) => a.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('click', (e) => { if (!e.target.closest('.nav')) setMenu(false); });
+    window.matchMedia('(min-width: 721px)').addEventListener('change', () => setMenu(false));
+
+    /* ---- 5. Dialogs ---------------------------------------------------- */
+    const galleryDialog = byId('galleryDialog'), lightbox = byId('lightbox');
+    const syncScrollLock = () => document.body.classList.toggle('no-scroll', !!document.querySelector('dialog[open]'));
+
+    function openDialog(dialog) {
+      if (dialog.open) return;
+      dialog.showModal();
+      syncScrollLock();
+      if (window.MOTION.dialogMotion && !reducedMotion.matches && dialog.animate) {
+        dialog.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }],
+          { duration: 220, easing: 'ease-out' });
+      }
+    }
+    [galleryDialog, lightbox, notice].forEach((dialog) => {
+      dialog.addEventListener('close', syncScrollLock);
+      // Click on the dark backdrop closes the dialog
+      dialog.addEventListener('click', (e) => {
+        if (e.target !== dialog) return;
+        const r = dialog.getBoundingClientRect();
+        const outside = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+        if (outside || dialog === lightbox) dialog.close();
+      });
+    });
+    byId('galleryClose').addEventListener('click', () => galleryDialog.close());
+    byId('noticeClose').addEventListener('click', () => notice.close());
+    byId('noticeContact').addEventListener('click', () => notice.close());
+
+    /* ---- 6. Projects (rendered from PROJECTS) -------------------------- */
+    function buildPreview(p) {
+      if (p.preview === 'browser') {
+        return el('div', { class: 'browser-preview' },
+          el('div', { class: 'browser-bar' }, el('i'), el('i'), el('i')),
+          el('div', { class: 'browser-inner' },
+            el('div', {}, el('strong', { html: 'Graphic Designer<br>&amp; IT Professional.' }), el('small', {}, config.name)),
+            el('div', { class: 'browser-circle' })));
+      }
+      if (p.preview === 'coming-soon') {
+        return el('div', {}, el('span', { html: svg('code') }), el('span', {}, 'In development'));
+      }
+      return el('img', { src: img(p.image), alt: p.title, loading: 'lazy' });
+    }
+
+    function projectAction(p) {
+      if (p.action === 'gallery') return () => openGallery(p.galleryCategory);
+      return null;
+    }
+
+    const projectList = byId('projectList');
+    window.PROJECTS.forEach((p) => {
+      const action = projectAction(p);
+      const previewClass = 'work-preview' + (p.preview === 'coming-soon' ? ' coming-preview' : '');
+      let preview;
+      if (p.action === 'link') preview = el('a', { class: previewClass, href: p.url, 'aria-label': p.title }, buildPreview(p));
+      else if (action)         preview = el('button', { class: previewClass, type: 'button', 'aria-label': 'Open ' + p.title, onclick: action }, buildPreview(p));
+      else                     preview = el('div', { class: previewClass }, buildPreview(p));
+
+      let footerLink = null;
+      if (p.action === 'link' && p.linkText) {
+        const external = /^https?:/.test(p.url);
+        footerLink = el('a', { class: 'text-link', href: p.url, target: external ? '_blank' : null, rel: external ? 'noopener' : null },
+          p.linkText + ' ', el('span', { 'aria-hidden': 'true' }, '↗'));
+      } else if (action && p.linkText) {
+        footerLink = el('button', { class: 'text-link', type: 'button', onclick: action },
+          p.linkText + ' ', el('span', { 'aria-hidden': 'true' }, '↗'));
+      } else if (p.preview === 'coming-soon') {
+        footerLink = el('span', { class: 'coming-status' }, el('i', { 'aria-hidden': 'true' }), 'Work in progress');
+      }
+
+      projectList.append(el('article', { class: 'work-card reveal' }, preview,
+        el('div', { class: 'work-body' },
+          el('span', { class: 'eyebrow' }, p.eyebrow),
+          el('h3', {}, p.title),
+          el('p', {}, p.description),
+          el('div', { class: 'tags' }, (p.tags || []).map((t) => el('span', { class: 'tag' }, t))),
+          footerLink)));
+    });
+
+    /* ---- 7. Gallery + lightbox (rendered from GALLERY) ----------------- */
+    const filtersEl = byId('filters'), galleryEl = byId('gallery'), emptyEl = byId('galleryEmpty');
+    const lbImg = byId('lbImg'), lbCaption = byId('lbCaption'), lbPrev = byId('lbPrev'), lbNext = byId('lbNext');
+    let activeCat = window.GALLERY[0] ? window.GALLERY[0].id : null;
+    let currentIndex = 0;
+    const activeItems = () => (window.GALLERY.find((c) => c.id === activeCat) || { items: [] }).items;
+
+    window.GALLERY.forEach((cat) => {
+      filtersEl.append(el('button', {
+        class: 'filter', type: 'button', 'data-filter': cat.id, 'aria-pressed': 'false',
+        onclick: () => showCategory(cat.id),
+      }, cat.label, el('span', { class: 'count' }, String(cat.items.length))));
+    });
+
+    function showCategory(id) {
+      activeCat = id;
+      $$('.filter', filtersEl).forEach((b) => {
+        const on = b.dataset.filter === id;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+      const items = activeItems();
+      galleryEl.replaceChildren(...items.map((item, i) =>
+        el('button', { class: 'gallery-item', type: 'button', 'aria-label': 'Open ' + item.caption, onclick: () => openPreview(i) },
+          el('span', { class: 'gallery-media' }, el('img', { src: img(item.image), alt: item.caption, loading: 'lazy' })),
+          el('span', { class: 'gallery-caption' }, el('strong', {}, item.title), el('small', {}, item.caption)))));
+      emptyEl.hidden = items.length > 0;
+    }
+
+    function openGallery(categoryId) {
+      showCategory(categoryId && window.GALLERY.some((c) => c.id === categoryId) ? categoryId : activeCat);
+      openDialog(galleryDialog);
+    }
+
+    function updatePreview() {
+      const items = activeItems(), item = items[currentIndex];
+      if (!item) return;
+      lbImg.src = img(item.image);
+      lbImg.alt = item.caption;
+      lbCaption.textContent = item.caption + ' · ' + (currentIndex + 1) + ' / ' + items.length;
+      lbPrev.hidden = lbNext.hidden = items.length < 2;
+    }
+    function openPreview(i) { currentIndex = i; updatePreview(); openDialog(lightbox); }
+    function move(step) {
+      const n = activeItems().length;
+      if (!n) return;
+      currentIndex = (currentIndex + step + n) % n;
+      updatePreview();
+    }
+
+    byId('lbClose').addEventListener('click', () => lightbox.close());
+    lbPrev.addEventListener('click', () => move(-1));
+    lbNext.addEventListener('click', () => move(1));
+    lightbox.addEventListener('close', () => lbImg.removeAttribute('src'));
+    lightbox.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); move(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); move(1); }
+    });
+    let touchStartX = null; // swipe left/right on phones
+    lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      if (touchStartX === null) return;
+      const d = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(d) > 55) move(d > 0 ? -1 : 1);
+      touchStartX = null;
+    }, { passive: true });
+
+    if (activeCat) showCategory(activeCat);
+
+    /* ---- 8. Contact form + basic anti-spam ---------------------------- */
+    const form = byId('contactForm'), statusEl = byId('formStatus'), submitBtn = byId('cfSubmit');
+    const rules = window.SPAM_RULES;
+    const formLoadedAt = Date.now();
+    const COOLDOWN_KEY = 'ije-last-submit';
+
+    function setStatus(text, type) { statusEl.textContent = text; statusEl.className = 'form-status ' + (type || ''); }
+    function setFieldError(field, message) {
+      field.setAttribute('aria-invalid', message ? 'true' : 'false');
+      byId(field.id + '-error').textContent = message || '';
+    }
+
+    function validate() {
+      const name = form.name.value.trim(), email = form.email.value.trim(), message = form.message.value.trim();
+      let ok = true;
+      setFieldError(form.name, name.length >= 2 ? '' : (ok = false, 'Please enter your name.'));
+      setFieldError(form.email, /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? '' : (ok = false, 'Please enter a valid email.'));
+      const links = (message.match(/https?:\/\/|www\./gi) || []).length;
+      let msgErr = '';
+      if (message.length < rules.minMessageLength) msgErr = 'Please write at least ' + rules.minMessageLength + ' characters.';
+      else if (links > rules.maxLinksInMessage) msgErr = 'Please include no more than ' + rules.maxLinksInMessage + ' links.';
+      if (msgErr) ok = false;
+      setFieldError(form.message, msgErr);
+      return ok ? { name, email, message } : null;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      setStatus('');
+
+      // Anti-spam 1: honeypot filled → silently pretend success
+      if (form.website.value) { form.reset(); setStatus('Thanks! Your message was sent.', 'success'); return; }
+
+      // Anti-spam 2: submitted too fast after page load
+      if ((Date.now() - formLoadedAt) / 1000 < rules.minSecondsBeforeSubmit) {
+        setStatus('That was quick! Please wait a moment and try again.', 'error'); return;
+      }
+
+      // Anti-spam 3: cooldown between submissions
+      let last = 0;
+      try { last = Number(localStorage.getItem(COOLDOWN_KEY)) || 0; } catch (_) {}
+      const wait = Math.ceil(rules.cooldownSeconds - (Date.now() - last) / 1000);
+      if (wait > 0) { setStatus('Please wait ' + wait + 's before sending another message.', 'error'); return; }
+
+      // Validation
+      const data = validate();
+      if (!data) { setStatus('Please fix the highlighted fields.', 'error'); return; }
+
+      // TURNSTILE (optional): when enabled, read the token here and send it along:
+      //   const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
+      //   if (!token) { setStatus('Please complete the verification.', 'error'); return; }
+      //   data['cf-turnstile-response'] = token;
+      // Your form service / server must verify this token with the SECRET key.
+
+      const markSent = () => { try { localStorage.setItem(COOLDOWN_KEY, String(Date.now())); } catch (_) {} };
+
+      // Option A: no endpoint → open the visitor's email app
+      if (!config.form.endpoint) {
+        const body = data.message + '\n\n— ' + data.name + ' (' + data.email + ')';
+        window.location.href = 'mailto:' + getEmail() +
+          '?subject=' + encodeURIComponent(config.form.subject) + '&body=' + encodeURIComponent(body);
+        markSent();
+        setStatus('Your email app should open with the message ready to send.', 'success');
+        return;
+      }
+
+      // Option B: send to a form service endpoint
+      submitBtn.disabled = true;
+      setStatus('Sending…');
+      try {
+        const res = await fetch(config.form.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(Object.assign({ _subject: config.form.subject }, data)),
+        });
+        if (!res.ok) throw new Error('Request failed');
+        markSent();
+        form.reset();
+        setStatus('Thanks! Your message was sent.', 'success');
+      } catch (_) {
+        setStatus('Sorry, the message could not be sent. Please email directly instead.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Clear a field's error as the visitor types
+    ['name', 'email', 'message'].forEach((n) => form[n].addEventListener('input', () => setFieldError(form[n], '')));
+
+    /* ---- 9. Scroll effects: active nav link + reveal-on-scroll -------- */
+    const revealEls = $$('.reveal');
+    if ('IntersectionObserver' in window) {
+      const navObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        $$('.nav-link').forEach((link) => {
+          const on = link.hash === '#' + entry.target.id;
+          link.classList.toggle('active', on);
+          on ? link.setAttribute('aria-current', 'location') : link.removeAttribute('aria-current');
+        });
+      }), { rootMargin: '-15% 0px -55% 0px' });
+      $$('main > section[id]').forEach((s) => navObserver.observe(s));
+
+      if (window.MOTION.reveal && !reducedMotion.matches) {
+        const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }), { threshold: 0.12 });
+        revealEls.forEach((n) => revealObserver.observe(n));
+      } else {
+        revealEls.forEach((n) => n.classList.add('is-visible'));
+      }
+    } else {
+      revealEls.forEach((n) => n.classList.add('is-visible'));
+    }
+  })();
+  </script>
 </body>
 </html>
